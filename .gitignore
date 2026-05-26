@@ -1,0 +1,15 @@
+# Fichiers sensibles — ne jamais versionner
+includes/config.php
+.env
+*.env
+
+# Uploads utilisateurs
+assets/images/uploads/
+
+# Logs
+*.log
+error_log
+
+# Fichiers système
+.DS_Store
+Thumbs.db

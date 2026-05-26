@@ -1,0 +1,639 @@
+<?php require_once 'includes/header.php'; ?>
+
+<style>
+    :root {
+        --checkout-primary: var(--primary);
+        --checkout-ink: var(--ink);
+        --checkout-bg: var(--bg);
+        --checkout-border: var(--border);
+    }
+
+    .checkout-wrapper {
+        background-color: var(--checkout-bg);
+        min-height: 100vh;
+        padding: 80px 20px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .checkout-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 60px;
+    }
+
+    @media (max-width: 1024px) {
+        .checkout-content { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .checkout-main-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--checkout-ink);
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+    }
+
+    .checkout-desc {
+        color: var(--muted);
+        font-size: 16px;
+        margin-bottom: 48px;
+    }
+
+    .order-card {
+        background: var(--white);
+        border-radius: 24px;
+        padding: 40px;
+        border: 1px solid var(--checkout-border);
+        box-shadow: 0 4px 20px rgba(49, 35, 30, 0.04);
+    }
+
+    .section-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--checkout-primary);
+        margin-bottom: 32px;
+    }
+
+    .section-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--checkout-border);
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+
+    .form-ctrl {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .form-ctrl label {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--checkout-ink);
+    }
+
+    .form-ctrl input, .form-ctrl select {
+        padding: 14px 18px;
+        border: 2px solid var(--checkout-border);
+        border-radius: 12px;
+        font-size: 15px;
+        background: var(--white);
+        color: var(--ink);
+        transition: all 0.2s;
+        outline: none;
+    }
+
+    .form-ctrl input:focus {
+        border-color: var(--checkout-primary);
+        box-shadow: 0 0 0 4px rgba(162, 79, 43, 0.08);
+    }
+
+    
+    .pay-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 12px;
+    }
+
+    .pay-card {
+        border: 2px solid var(--checkout-border);
+        border-radius: 16px;
+        padding: 24px;
+        cursor: pointer;
+        transition: 0.2s;
+        position: relative;
+    }
+
+    .pay-card:hover { border-color: var(--checkout-primary); }
+    .pay-card.active { border-color: var(--checkout-primary); background: var(--gold-light); }
+
+    .pay-card input { position: absolute; opacity: 0; }
+    .pay-name { display: block; font-weight: 800; font-size: 15px; margin-bottom: 4px; }
+    .pay-info { font-size: 12px; color: var(--muted); }
+
+    
+    .sticky-summary {
+        position: sticky;
+        top: 120px;
+    }
+
+    .summary-item {
+        display: flex;
+        gap: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--checkout-border);
+        margin-bottom: 16px;
+    }
+
+    .summary-img {
+        width: 60px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid var(--checkout-border);
+    }
+
+    .summary-detail { flex: 1; }
+    .summary-name { font-weight: 700; font-size: 14px; color: var(--checkout-ink); margin-bottom: 4px; }
+    .summary-qty { font-size: 12px; color: var(--muted); }
+    .summary-price { font-weight: 800; font-size: 14px; color: var(--checkout-ink); }
+
+    .total-box {
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 2px solid var(--checkout-ink);
+    }
+
+    .total-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+
+    .final-total {
+        font-size: 24px;
+        font-weight: 900;
+        margin-top: 12px;
+        color: var(--checkout-primary);
+    }
+
+    .confirm-btn {
+        width: 100%;
+        padding: 0;
+        background: none !important;
+        border: none;
+        border-radius: 16px;
+        cursor: pointer;
+        margin-top: 32px;
+        display: block;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        font-family: inherit;
+        outline: none;
+    }
+
+    .confirm-btn-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 20px 32px;
+        background: linear-gradient(135deg, #a24f2b 0%, #c8622e 50%, #a24f2b 100%) !important;
+        background-size: 200% 200% !important;
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 800;
+        font-family: inherit;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #fff !important;
+        transition: transform 0.25s, box-shadow 0.25s, background-position 0.4s;
+        box-shadow: 0 4px 20px rgba(162, 79, 43, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .confirm-btn-inner::after {
+        content: '';
+        position: absolute;
+        top: -60%;
+        left: -80%;
+        width: 60%;
+        height: 220%;
+        background: rgba(255,255,255,0.12);
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+    }
+
+    .confirm-btn:hover .confirm-btn-inner {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(162, 79, 43, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+        background-position: right center;
+    }
+
+    .confirm-btn:hover .confirm-btn-inner::after {
+        left: 130%;
+    }
+
+    .confirm-btn:active .confirm-btn-inner {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(162, 79, 43, 0.3);
+    }
+
+    .confirm-btn:disabled .confirm-btn-inner,
+    .confirm-btn[disabled] .confirm-btn-inner {
+        background: linear-gradient(135deg, #9e8e85, #b09e95);
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .confirm-btn-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        transition: transform 0.3s;
+    }
+
+    .confirm-btn:hover .confirm-btn-icon {
+        transform: translateX(3px);
+    }
+
+    .confirm-btn.loading .confirm-btn-icon {
+        animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .confirm-btn .secure-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 500;
+        margin-top: 10px;
+        letter-spacing: 0.03em;
+    }
+</style>
+
+<div class="checkout-wrapper">
+    <?php if ($success): ?>
+    <div style="max-width: 600px; margin: 40px auto; text-align: center;" class="order-card">
+        <div style="width: 80px; height: 80px; background: #e8f4ec; color: #4a7c59; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h1 class="checkout-main-title">Merci pour votre commande !</h1>
+        <p class="checkout-desc">Numéro de commande : <strong>#<?= e($_SESSION['last_order'] ?? '') ?></strong></p>
+        <p style="margin-bottom: 40px; color: #7d7067;">Un conseiller vous contactera par téléphone sous 24h pour confirmer la livraison de vos mangas.</p>
+        <a href="catalogue.php" class="confirm-btn" style="display:block; text-decoration:none;">
+            <div class="confirm-btn-inner">
+                <svg class="confirm-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span>Continuer mes achats</span>
+            </div>
+        </a>
+    </div>
+
+    <?php else: ?>
+    <div class="checkout-content">
+        <!-- Formulaire -->
+        <div>
+            <h1 class="checkout-main-title">Finaliser votre commande</h1>
+            <p class="checkout-desc">Presque terminé ! Remplissez ces derniers détails pour recevoir votre collection.</p>
+
+            <?php if (!empty($errors)): ?>
+            <div style="background:#fef2f2; border:1px solid #fca5a5; border-radius:12px; padding:16px 20px; margin-bottom:24px;">
+                <p style="font-weight:700; color:#991b1b; margin-bottom:8px;">Veuillez corriger les erreurs suivantes :</p>
+                <ul style="margin:0; padding-left:20px; color:#b91c1c; font-size:14px; line-height:1.8;">
+                    <?php foreach ($errors as $err): ?>
+                    <li><?= e($err) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php endif; ?>
+
+            <form method="POST" id="mainCheckoutForm">
+                <div class="order-card">
+                    <div class="section-label">Informations Personnelles</div>
+                    
+                    <?php
+                    $autofillUser = null;
+                    if (isset($_SESSION['user']['id'])) {
+                        $stmtUser = getDB()->prepare("SELECT * FROM users WHERE id = ?");
+                        $stmtUser->execute([$_SESSION['user']['id']]);
+                        $autofillUser = $stmtUser->fetch();
+                    }
+                    if ($autofillUser):
+                    ?>
+                        <button type="button" onclick="autocompleteCheckoutDetails()" style="display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:var(--primary); background:none; border:none; cursor:pointer; padding:0; margin-bottom:20px; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                            Remplir avec les coordonnées de mon profil
+                        </button>
+                    <?php endif; ?>
+                    
+                    <div class="form-grid">
+                        <div class="form-ctrl">
+                            <label>Nom complet *</label>
+                            <input type="text" name="name" required placeholder="Ex: Mohammed Bouaouin" value="<?= e($_POST['name'] ?? $autofillUser['name'] ?? '') ?>">
+                        </div>
+                        <div class="form-ctrl">
+                            <label>Téléphone *</label>
+                            <input type="tel" name="phone" required placeholder="06 12 34 56 78" value="<?= e($_POST['phone'] ?? $autofillUser['phone'] ?? '') ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-ctrl">
+                        <label>Adresse E-mail (pour le suivi)</label>
+                        <input type="email" name="email" placeholder="votre@exemple.com" value="<?= e($_POST['email'] ?? $autofillUser['email'] ?? '') ?>">
+                    </div>
+
+                    <div style="margin-top: 48px;" class="section-label">Livraison</div>
+                    
+                    <div class="form-ctrl">
+                        <label>Adresse complète *</label>
+                        <input type="text" name="address" required placeholder="Rue, Quartier, N°..." value="<?= e($_POST['address'] ?? $autofillUser['address'] ?? '') ?>">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-ctrl">
+                            <label>Ville *</label>
+                            <select name="city" required>
+                                <option value="">Choisir...</option>
+                                <?php foreach([
+                                    'Casablanca','Rabat','Marrakech','Fès','Tanger','Agadir',
+                                    'Meknès','Oujda','Kénitra','Tétouan','Safi','El Jadida',
+                                    'Béni Mellal','Nador','Mohammedia','Khémisset','Settat',
+                                    'Khouribga','Berrechid','Taza','Ifrane','Laâyoune','Dakhla'
+                                ] as $v): ?>
+                                <option value="<?= $v ?>" <?= (($_POST['city'] ?? $autofillUser['city'] ?? '') === $v) ? 'selected' : '' ?>><?= $v ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-ctrl">
+                            <label>Instructions (optionnel)</label>
+                            <input type="text" name="notes" placeholder="Ex: Code d'entrée..." value="<?= e($_POST['notes']??'') ?>">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 48px;" class="section-label">Mode de Paiement</div>
+                    
+                    <div class="pay-grid">
+                        <label class="pay-card active" id="pay-cod">
+                            <input type="radio" name="payment" value="cod" checked onchange="togglePay(this)">
+                            <span class="pay-name">Paiement à la livraison</span>
+                            <span class="pay-info">Payez en espèces lors de la réception de votre colis. Simple et sûr.</span>
+                        </label>
+                        <label class="pay-card" id="pay-card">
+                            <input type="radio" name="payment" value="card" onchange="togglePay(this)">
+                            <span class="pay-name">Carte Bancaire</span>
+                            <span class="pay-info">Paiement sécurisé via Stripe (Visa, Mastercard, etc.).</span>
+                        </label>
+                    </div>
+
+                    <div id="card-fields" style="display:none; margin-top:24px;">
+                        <?php if (!STRIPE_PUBLISHABLE_KEY || !$stripeClientSecret): ?>
+                        <div style="padding:16px 20px; background:#fff8f3; border:1.5px solid #e8c9b0; border-radius:14px; color:#a24f2b; font-size:13px; font-weight:600; display:flex; align-items:center; gap:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            Paiement par carte non configuré — veuillez vérifier vos clés Stripe dans <code>includes/config.php</code>
+                        </div>
+                        <?php else: ?>
+                        <div style="background:#fff; border:1.5px solid var(--checkout-border); border-radius:14px; overflow:hidden;">
+                            <div id="stripe-payment-element" style="padding:20px;"></div>
+                            <div id="stripe-card-errors" style="color:#c0392b; font-size:12.5px; margin:0 20px 16px; min-height:18px; font-weight:500;"></div>
+                        </div>
+                        <input type="hidden" name="stripe_payment_intent_id" id="stripe_payment_intent_id">
+                        <?php endif; ?>
+                        <div style="display:flex; align-items:center; gap:8px; margin-top:12px; padding:10px 14px; background:#f6f9f6; border-radius:10px; border:1px solid #d4e8d4;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span style="font-size:11px; color:#4a7c59; font-weight:600;">Paiement chiffré SSL — Aucune donnée bancaire stockée sur nos serveurs.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="confirm-btn" id="confirmBtn">
+                    <div class="confirm-btn-inner">
+                        <svg class="confirm-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
+                        <span class="confirm-btn-label">Confirmer et Commander</span>
+                        <svg class="confirm-btn-icon" style="margin-left:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </div>
+                    <div class="secure-badge">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Paiement 100% sécurisé — SSL
+                    </div>
+                </button>
+            </form>
+        </div>
+
+        <!-- Résumé -->
+        <aside class="sticky-summary">
+            <div class="order-card" style="padding: 32px;">
+                <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 24px;">Votre Panier</h3>
+                
+                <div style="max-height: 380px; overflow-y: auto; padding-right: 8px;">
+                    <?php foreach ($cartItems as $item): ?>
+                    <div class="summary-item">
+                        <img src="<?= asset($item['image_url']) ?>" alt="<?= e($item['title']) ?>" class="summary-img" onerror="this.style.display='none'">
+                        <div class="summary-detail">
+                            <div class="summary-name"><?= e($item['title']) ?></div>
+                            <div class="summary-qty">Quantité : <?= $item['qty'] ?></div>
+                        </div>
+                        <div class="summary-price"><?= number_format($item['line'], 2) ?> MAD</div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="total-box">
+                    <div class="total-row">
+                        <span style="color:#7d7067;">Sous-total</span>
+                        <span style="font-weight:700;"><?= number_format($subtotal, 2) ?> MAD</span>
+                    </div>
+                    <?php if ($discount > 0): ?>
+                    <div class="total-row">
+                        <span style="color:#4a7c59;">Réduction (<?= $_SESSION['promo']['pct'] ?>% — <?= e($_SESSION['promo']['code']) ?>)</span>
+                        <span style="font-weight:700; color:#4a7c59;">-<?= number_format($discount, 2) ?> MAD</span>
+                    </div>
+                    <?php endif; ?>
+                    <div class="total-row">
+                        <span style="color:#7d7067;">Frais de livraison</span>
+                        <span style="font-weight:700; color:<?= $shipping == 0 ? '#16a34a' : '#1a1209' ?>">
+                            <?= $shipping == 0 ? 'GRATUIT' : number_format($shipping, 2) . ' MAD' ?>
+                        </span>
+                    </div>
+                    <div class="total-row final-total">
+                        <span>Total</span>
+                        <span><?= number_format($total, 2) ?> MAD</span>
+                    </div>
+                    
+                    <div style="margin-top: 32px; padding: 16px; background: #fffcf9; border: 1px dashed #dcb89a; border-radius: 12px; display: flex; gap: 12px; align-items: start;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a24f2b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <p style="font-size: 11px; line-height: 1.5; color: #7d7067; margin: 0;"><strong>Achat sécurisé :</strong> Vos données sont protégées par un cryptage SSL de bout en bout.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <?php endif; ?>
+</div>
+
+<script>
+const autofillUser = <?= json_encode($autofillUser) ?>;
+
+function autocompleteCheckoutDetails() {
+    if (!autofillUser) return;
+    const form = document.getElementById('mainCheckoutForm');
+    if (!form) return;
+    
+    if (autofillUser.name) form.querySelector('input[name="name"]').value = autofillUser.name;
+    if (autofillUser.phone) form.querySelector('input[name="phone"]').value = autofillUser.phone;
+    if (autofillUser.email) form.querySelector('input[name="email"]').value = autofillUser.email;
+    if (autofillUser.address) form.querySelector('input[name="address"]').value = autofillUser.address;
+    if (autofillUser.city) {
+        const citySelect = form.querySelector('select[name="city"]');
+        if (citySelect) citySelect.value = autofillUser.city;
+    }
+    showToast('Coordonnées chargées depuis votre profil !', 'success');
+}
+
+function togglePay(input) {
+    document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
+    input.closest('.pay-card').classList.add('active');
+    const cardFields = document.getElementById('card-fields');
+    if (cardFields) {
+        cardFields.style.display = input.value === 'card' ? 'block' : 'none';
+    }
+}
+</script>
+
+<script src="https://js.stripe.com/v3/"></script>
+<?php if (STRIPE_PUBLISHABLE_KEY && !empty($stripeClientSecret)): ?>
+<script>
+(function() {
+    const PUBLISHABLE_KEY  = <?= json_encode(STRIPE_PUBLISHABLE_KEY) ?>;
+    const CLIENT_SECRET    = <?= json_encode($stripeClientSecret) ?>;
+
+    if (!PUBLISHABLE_KEY || !CLIENT_SECRET) return;
+
+    const stripe = Stripe(PUBLISHABLE_KEY, {
+        developerTools: {
+            assistant: {
+                enabled: true,
+            },
+        },
+    });
+    const errDiv = document.getElementById('stripe-card-errors');
+    const form   = document.getElementById('mainCheckoutForm');
+    if (!form) return;
+
+    // ── Apparence Payment Element (thème MangaShop) ──────────────────
+    const appearance = {
+        theme: 'stripe',
+        variables: {
+            colorPrimary        : '#a24f2b',
+            colorBackground     : '#ffffff',
+            colorText           : '#1a1209',
+            colorDanger         : '#c0392b',
+            fontFamily          : 'Inter, system-ui, sans-serif',
+            borderRadius        : '10px',
+            fontSizeBase        : '15px',
+            colorTextPlaceholder: '#b0a090',
+            spacingUnit         : '4px',
+        },
+        rules: {
+            '.Input': {
+                border    : '1.5px solid #e8ddd4',
+                boxShadow : 'none',
+                padding   : '12px 14px',
+            },
+            '.Input:focus': {
+                border   : '1.5px solid #a24f2b',
+                boxShadow: '0 0 0 3px rgba(162,79,43,.1)',
+                outline  : 'none',
+            },
+            '.Label': { fontWeight: '700', fontSize: '13px', color: '#1a1209' },
+            '.Tab'  : { border: '1.5px solid #e8ddd4', boxShadow: 'none', fontWeight: '600' },
+            '.Tab--selected': {
+                borderColor: '#a24f2b',
+                background : 'rgba(162,79,43,.06)',
+                color      : '#a24f2b',
+            },
+            '.Tab:hover'  : { borderColor: '#a24f2b' },
+            '.Block'      : { border: '1.5px solid #e8ddd4' },
+        }
+    };
+
+    // ── Initialiser Elements avec clientSecret fourni par le serveur ──
+    const elements = stripe.elements({
+        clientSecret: CLIENT_SECRET,
+        locale      : 'fr',
+        appearance,
+    });
+
+    // ── Payment Element (inclut autofill Stripe / Link / 3DS2) ───────
+    const paymentEl = elements.create('payment', {
+        layout: { type: 'tabs', defaultCollapsed: false },
+        fields: {
+            billingDetails: { name: 'auto', email: 'auto', phone: 'auto' }
+        },
+        wallets: { applePay: 'never', googlePay: 'never' }
+    });
+    paymentEl.mount('#stripe-payment-element');
+
+    paymentEl.on('change', ev => {
+        if (errDiv) errDiv.textContent = ev.error ? ev.error.message : '';
+    });
+
+    // ── Soumission ────────────────────────────────────────────────────
+    form.addEventListener('submit', async function(e) {
+        const payVal = form.querySelector('[name=payment]:checked')?.value;
+        if (payVal !== 'card') return;   // POST normal pour COD
+
+        e.preventDefault();
+
+        const btn      = document.getElementById('confirmBtn');
+        const btnLabel = btn?.querySelector('.confirm-btn-label');
+
+        function setLoading(on) {
+            if (!btn) return;
+            btn.disabled = on;
+            if (btnLabel) btnLabel.textContent = on ? 'Traitement en cours...' : 'Confirmer et Commander';
+            btn.classList.toggle('loading', on);
+        }
+
+        setLoading(true);
+        if (errDiv) errDiv.textContent = '';
+
+        const { paymentIntent, error } = await stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: window.location.href,
+                payment_method_data: {
+                    billing_details: {
+                        name   : form.querySelector('[name=name]')?.value    || '',
+                        email  : form.querySelector('[name=email]')?.value   || '',
+                        phone  : form.querySelector('[name=phone]')?.value   || '',
+                        address: {
+                            country: 'MA',
+                            city   : form.querySelector('[name=city]')?.value    || '',
+                            line1  : form.querySelector('[name=address]')?.value || '',
+                        }
+                    }
+                }
+            },
+            redirect: 'if_required',
+        });
+
+        if (error) {
+            if (errDiv) errDiv.textContent = error.message;
+            setLoading(false);
+            return;
+        }
+
+        document.getElementById('stripe_payment_intent_id').value = paymentIntent.id;
+        form.submit();
+    });
+})();
+</script>
+<?php endif; ?>
+
+<?php require_once 'includes/footer.php'; ?>
