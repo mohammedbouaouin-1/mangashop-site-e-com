@@ -449,6 +449,9 @@ img{display:block;max-width:100%;height:auto}
   .header-divider {
     display: none !important;
   }
+  .header-account, .header-dark-toggle {
+    display: none !important;
+  }
   #mobileMenuToggle {
     display: flex !important;
   }
@@ -457,6 +460,23 @@ img{display:block;max-width:100%;height:auto}
   }
   #siteHeader.menu-open {
     border-radius: var(--radius-lg) !important;
+  }
+  
+  .slide-content-anim span[style*="margin-bottom:24px;"],
+  .slide-content-anim span[style*="margin-bottom: 24px;"] {
+    margin-bottom: 12px !important;
+  }
+  .slide-content-anim h1 {
+    margin-bottom: 12px !important;
+    font-size: 24px !important;
+  }
+  .slide-content-anim p {
+    margin-bottom: 16px !important;
+    font-size: 13.5px !important;
+  }
+  .slide-content-anim div[style*="margin-bottom:36px;"],
+  .slide-content-anim div[style*="margin-bottom: 36px;"] {
+    margin-bottom: 16px !important;
   }
   
   section.reveal {

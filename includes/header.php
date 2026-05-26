@@ -71,12 +71,12 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
       <div style="width:1px; height:16px; background:var(--border);" class="header-divider"></div>
 
       
-      <a href="account.php" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Mon compte">
+      <a href="account.php" class="header-account" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Mon compte">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
       </a>
 
       
-      <button onclick="toggleDarkMode()" id="darkModeToggle" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Basculer le thème">
+      <button onclick="toggleDarkMode()" id="darkModeToggle" class="header-dark-toggle" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Basculer le thème">
         <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
@@ -108,6 +108,19 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
       <?php elseif (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'livreur'): ?>
         <a href="account.php?tab=deliveries" style="font-size:15px; font-weight:700; color:var(--primary);">Mes Livraisons</a>
       <?php endif; ?>
+      
+      <div style="display:flex; flex-direction:column; gap:12px; margin-top:4px; padding-top:12px; border-top:1px dashed var(--border);">
+        <a href="account.php" style="font-size:15px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+          Mon Compte
+        </a>
+        <button onclick="toggleDarkMode()" style="font-size:15px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; width:100%; text-align:left;">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          Changer de Theme
+        </button>
+      </div>
+
       <form action="search.php" method="GET" style="position:relative; width:100%; margin-top:8px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none;"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
         <input type="text" name="q" placeholder="Rechercher..." value="<?= isset($_GET['q']) ? e($_GET['q']) : '' ?>" style="width:100%; border:none; background:rgba(0,0,0,0.04); padding:10px 12px 10px 38px; border-radius:var(--radius-md); font-size:14px; font-weight:500; color:var(--ink); outline:none;">
