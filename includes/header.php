@@ -29,7 +29,7 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
 
 <body style="padding-top: 80px;">
   
-  <header style="position:fixed; top:16px; left:50%; transform:translateX(-50%); width:95%; max-width:1200px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid var(--border); box-shadow:var(--shadow-md); border-radius:var(--radius-full); display:flex; align-items:center; justify-content:space-between; padding:12px 24px; z-index:1000; transition:all 0.3s ease;" id="siteHeader">
+  <header style="position:fixed; top:16px; left:50%; transform:translateX(-50%); width:95%; max-width:1200px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid var(--border); box-shadow:var(--shadow-md); border-radius:var(--radius-full); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:12px 24px; z-index:1000; transition:all 0.3s ease;" id="siteHeader">
     
     
     <a href="index.php" style="display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; color:var(--ink); letter-spacing:-0.03em; text-decoration:none;">
@@ -68,7 +68,7 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
         <div id="headerSearchSuggestions" style="position:absolute; top:calc(100% + 8px); right:0; width:320px; background:var(--white); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-float); display:none; flex-direction:column; overflow:hidden; z-index:9999;"></div>
       </form>
 
-      <div style="width:1px; height:16px; background:var(--border);"></div>
+      <div style="width:1px; height:16px; background:var(--border);" class="header-divider"></div>
 
       
       <a href="account.php" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Mon compte">
@@ -86,6 +86,32 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span id="cartBadge"><?= $cartQty ?></span>
       </button>
+
+      
+      <button onclick="toggleMobileMenu()" id="mobileMenuToggle" style="display:none; color:var(--ink); padding:6px; align-items:center; justify-content:center;" title="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    
+    <div id="mobileMenuLinks" style="display:none; width:100%; flex-direction:column; gap:16px; padding:16px 8px 8px; border-top:1px solid var(--border); margin-top:12px;">
+      <a href="index.php" style="font-size:15px; font-weight:700; color:var(--ink);">Accueil</a>
+      <a href="catalogue.php" style="font-size:15px; font-weight:700; color:var(--ink);">Catalogue</a>
+      <a href="bundles.php" style="font-size:15px; font-weight:700; color:var(--ink);">Bundles</a>
+      <a href="imprimer.php" style="font-size:15px; font-weight:700; color:var(--ink);">Impression</a>
+      <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+        <a href="admin/index.php" style="font-size:15px; font-weight:700; color:var(--primary);">Dashboard</a>
+      <?php elseif (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'livreur'): ?>
+        <a href="account.php?tab=deliveries" style="font-size:15px; font-weight:700; color:var(--primary);">Mes Livraisons</a>
+      <?php endif; ?>
+      <form action="search.php" method="GET" style="position:relative; width:100%; margin-top:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none;"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
+        <input type="text" name="q" placeholder="Rechercher..." value="<?= isset($_GET['q']) ? e($_GET['q']) : '' ?>" style="width:100%; border:none; background:rgba(0,0,0,0.04); padding:10px 12px 10px 38px; border-radius:var(--radius-md); font-size:14px; font-weight:500; color:var(--ink); outline:none;">
+      </form>
     </div>
   </header>
 
@@ -137,6 +163,20 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
     function toggleDarkMode() {
       const isDark = document.documentElement.classList.toggle('dark-mode');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleMobileMenu() {
+      const header = document.getElementById('siteHeader');
+      const links = document.getElementById('mobileMenuLinks');
+      if (header.classList.contains('menu-open')) {
+        header.classList.remove('menu-open');
+        header.style.borderRadius = 'var(--radius-full)';
+        links.style.display = 'none';
+      } else {
+        header.classList.add('menu-open');
+        header.style.borderRadius = 'var(--radius-lg)';
+        links.style.display = 'flex';
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
