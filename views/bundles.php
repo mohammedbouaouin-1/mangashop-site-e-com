@@ -25,43 +25,51 @@
             
             <aside class="filters-sidebar" style="background:var(--white); border:1px solid var(--border); border-radius:16px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.03);">
                 
-                <div class="filter-group" style="margin-bottom:28px;">
-                    <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Recherche</h4>
-                    <form action="bundles.php" method="GET" style="position:relative;">
-                        <input type="text" name="q" value="<?= e($filters['q']) ?>" placeholder="Chercher un pack..." style="width:100%; padding:12px 16px; border:1.5px solid var(--border); border-radius:10px; font-size:13px; outline:none; transition:border-color 0.2s; background:var(--bg); color:var(--ink);" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'">
-                        <button type="submit" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer;">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                        </button>
-                    </form>
-                </div>
+                <button id="mobileFilterToggle" onclick="toggleMobileFilters()" style="align-items:center; justify-content:space-between; width:100%; padding:12px 16px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-md); font-weight:700; color:var(--ink); font-size:14px;">
+                    <span>Filtrer les offres</span>
+                    <svg id="filterChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform 0.3s;"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
 
-                
-                <div class="filter-group" style="margin-bottom:28px;">
-                    <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Budget Max</h4>
-                    <div style="display:flex; flex-direction:column; gap:12px;">
-                        <input type="range" min="0" max="2000" step="50" value="<?= $filters['max_price'] ?: 2000 ?>" 
-                               oninput="document.getElementById('priceVal').innerText = this.value + ' MAD'"
-                               onchange="location.href='bundles.php?'+new URLSearchParams({...Object.fromEntries(new URLSearchParams(location.search)),...{max_price:this.value}})"
-                               style="width:100%; accent-color:var(--ink); cursor:pointer;">
-                        <span id="priceVal" style="font-size:14px; font-weight:700; color:var(--ink);"><?= ($filters['max_price'] ?: 2000) ?> MAD</span>
+                <div class="filters-collapsible-content" id="filtersContent">
+                    
+                    <div class="filter-group" style="margin-bottom:28px; margin-top:16px;">
+                        <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Recherche</h4>
+                        <form action="bundles.php" method="GET" style="position:relative;">
+                            <input type="text" name="q" value="<?= e($filters['q']) ?>" placeholder="Chercher un pack..." style="width:100%; padding:12px 16px; border:1.5px solid var(--border); border-radius:10px; font-size:13px; outline:none; transition:border-color 0.2s; background:var(--bg); color:var(--ink);" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'">
+                            <button type="submit" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                            </button>
+                        </form>
                     </div>
-                </div>
 
-                
-                <div class="filter-group" style="margin-bottom:28px;">
-                    <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Sélection</h4>
-                    <div style="display:flex; flex-direction:column; gap:12px;">
-                        <label class="filter-option" style="display:flex; align-items:center; cursor:pointer; font-size:14px; color:var(--ink-soft);">
-                            <input type="checkbox" onchange="toggleBundleFilter('promo')" <?= $filters['promo'] ? 'checked' : '' ?> style="margin-right:10px; accent-color:var(--ink); width:16px; height:16px;">
-                            En promotion
-                        </label>
+                    
+                    <div class="filter-group" style="margin-bottom:28px; padding-top:24px; border-top:1px solid var(--border);">
+                        <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Budget Max</h4>
+                        <div style="display:flex; flex-direction:column; gap:12px;">
+                            <input type="range" min="0" max="2000" step="50" value="<?= $filters['max_price'] ?: 2000 ?>" 
+                                   oninput="document.getElementById('priceVal').innerText = this.value + ' MAD'"
+                                   onchange="location.href='bundles.php?'+new URLSearchParams({...Object.fromEntries(new URLSearchParams(location.search)),...{max_price:this.value}})"
+                                   style="width:100%; accent-color:var(--ink); cursor:pointer;">
+                            <span id="priceVal" style="font-size:14px; font-weight:700; color:var(--ink);"><?= ($filters['max_price'] ?: 2000) ?> MAD</span>
+                        </div>
                     </div>
-                </div>
 
-                <a href="bundles.php" style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:600; color:var(--ink); border:2px solid var(--border); padding:12px; border-radius:10px; margin-top:20px; transition:all 0.2s; text-decoration:none;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                    Réinitialiser
-                </a>
+                    
+                    <div class="filter-group" style="margin-bottom:28px; padding-top:24px; border-top:1px solid var(--border);">
+                        <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Sélection</h4>
+                        <div style="display:flex; flex-direction:column; gap:12px;">
+                            <label class="filter-option" style="display:flex; align-items:center; cursor:pointer; font-size:14px; color:var(--ink-soft);">
+                                <input type="checkbox" onchange="toggleBundleFilter('promo')" <?= $filters['promo'] ? 'checked' : '' ?> style="margin-right:10px; accent-color:var(--ink); width:16px; height:16px;">
+                                En promotion
+                            </label>
+                        </div>
+                    </div>
+
+                    <a href="bundles.php" style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:600; color:var(--ink); border:2px solid var(--border); padding:12px; border-radius:10px; margin-top:20px; transition:all 0.2s; text-decoration:none;" onmouseover="this.style.background='var(--white)'; this.style.borderColor='var(--ink)';" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--border)';">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        Réinitialiser
+                    </a>
+                </div>
             </aside>
 
             
@@ -483,6 +491,18 @@
 </style>
 
 <script>
+function toggleMobileFilters() {
+    const content = document.getElementById('filtersContent');
+    const chevron = document.getElementById('filterChevron');
+    if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        chevron.style.transform = 'rotate(180deg)';
+    } else {
+        content.style.display = 'none';
+        chevron.style.transform = 'rotate(0deg)';
+    }
+}
+
 function switchTab(tab) {
     if (tab === 'packs') {
         document.getElementById('tabBtnPacks').classList.add('active');

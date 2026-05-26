@@ -6,7 +6,7 @@
             <h1 style="font-family:'Playfair Display',serif; font-size:32px; font-weight:800; margin-bottom:24px; text-align:center;">Trouvez votre <span style="color:var(--gold);">prochaine pépite</span></h1>
             <form action="search.php" method="GET" style="max-width:600px; margin:0 auto; position:relative;">
                 <input type="text" name="q" value="<?= e($q) ?>" placeholder="Titre, auteur, genre..." 
-                       style="width:100%; padding:18px 24px; border:1px solid var(--border); border-radius:14px; font-size:16px; font-weight:500; outline:none; box-shadow:var(--shadow-sm); background:var(--white);">
+                       style="width:100%; padding:18px 120px 18px 24px; border:1px solid var(--border); border-radius:14px; font-size:16px; font-weight:500; outline:none; box-shadow:var(--shadow-sm); background:var(--white);">
                 <button type="submit" style="position:absolute; right:8px; top:8px; bottom:8px; background:var(--ink); color:#fff; border:none; border-radius:10px; padding:0 24px; font-weight:700; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='var(--gold)'; this.style.color='#000';" onmouseout="this.style.background='var(--ink)'; this.style.color='#fff';">Chercher</button>
             </form>
         </div>

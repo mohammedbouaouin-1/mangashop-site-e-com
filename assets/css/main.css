@@ -837,4 +837,8 @@ img{display:block;max-width:100%;height:auto}
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px !important;
   }
+  .login-page, .register-page {
+    padding: 24px 16px !important;
+    margin: 40px 12px !important;
+  }
 }

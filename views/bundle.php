@@ -97,7 +97,7 @@
             </div>
             <a href="bundles.php" class="view-all">Voir tout →</a>
         </div>
-        <div class="products-grid" style="grid-template-columns:repeat(3,1fr);align-items:stretch">
+        <div class="related-grid" style="align-items:stretch">
             <?php
             $shown = 0;
             foreach ($others as $b):
