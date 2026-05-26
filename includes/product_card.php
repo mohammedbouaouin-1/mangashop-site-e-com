@@ -8,7 +8,7 @@ $rating        = number_format($p['rating'] ?? 4.5, 1);
      onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-float)';" 
      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)';">
     
-    <!-- Image block -->
+    
     <div style="position:relative; aspect-ratio:1/1.3; background:var(--bg); overflow:hidden;">
         <a href="product.php?slug=<?= e($p['slug']) ?>" style="display:block; width:100%; height:100%;">
             <img src="<?= asset($p['image_url']) ?>" alt="<?= e($p['title']) ?>" loading="lazy" referrerpolicy="no-referrer" style="width:100%; height:100%; object-fit:contain; padding:24px; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
@@ -28,7 +28,7 @@ $rating        = number_format($p['rating'] ?? 4.5, 1);
         </button>
     </div>
 
-    <!-- Details block -->
+    
     <div style="padding:24px; display:flex; flex-direction:column; flex:1;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
             <span style="font-size:12px; font-weight:600; color:var(--primary); text-transform:uppercase; letter-spacing:0.04em;"><?= e($p['cat_name'] ?? 'Manga') ?></span>

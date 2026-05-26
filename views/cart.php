@@ -101,7 +101,7 @@
         <div class="order-summary">
             <h3>Recapitulatif</h3>
             
-            <!-- Progress Meter (Module 3) -->
+            
             <div id="cartPageShippingMeter" style="margin-bottom:20px;">
                 <?php if ($totalQty > 0): 
                     $percent = $totalQty >= 2 ? 100 : 50;
@@ -121,7 +121,7 @@
                 <?php endif; ?>
             </div>
 
-            <!-- Progress Meter Collectionneur -->
+            
             <div id="cartPageCollectorMeter" style="margin-bottom:20px;">
                 <?php
                 if ($totalQty > 0):
@@ -132,7 +132,7 @@
                         $nextMilestone = 7;
                         $nextFree = 4;
                         $percent = 100;
-                        $label = "🎉 Avantage Collectionneur Max débloqué ! (4 mangas OFFERTS)";
+                        $label = " Avantage Collectionneur Max débloqué ! (4 mangas OFFERTS)";
                     } elseif ($totalQty >= 5) {
                         $nextMilestone = 7;
                         $nextFree = 4;
@@ -172,7 +172,7 @@
             <div class="summary-row" style="color:var(--green)"><span><?= $freeBooks ?> manga<?= $freeBooks>1?'s':'' ?> offert<?= $freeBooks>1?'s':'' ?></span><span>Gratuit</span></div>
             <?php endif; ?>
             
-            <!-- Économies Réelles -->
+            
             <div id="savingsCalculatedRow" style="display: <?= ($freeBooks > 0 || !empty($_SESSION['promo'])) ? 'flex' : 'none' ?>; justify-content:space-between; margin-bottom:8px; color:var(--green); font-size:14px; font-weight:700;">
                 <span>Économies Réalisées</span>
                 <span id="savingsPageTotalAmt">
@@ -193,7 +193,7 @@
             <div class="summary-row summary-total"><span>Total</span><span id="cartPageTotal" style="color:var(--red)"><?= number_format($total,2) ?> MAD</span></div>
 
 
-            <!-- Code promo -->
+            
             <div style="margin:16px 0;padding:16px;background:var(--bg);border-radius:10px;border:1px solid var(--border);box-sizing:border-box;">
                 <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;">Code promo</div>
                 <?php if (!empty($_SESSION['promo'])): ?>
@@ -210,7 +210,7 @@
                     <input type="text" id="promoInput" placeholder="Ex: MANGA10" style="flex:1;min-width:0;box-sizing:border-box;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:var(--white);color:var(--ink);outline:none;">
                     <button onclick="applyPromo()" style="padding:10px 16px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;box-sizing:border-box;white-space:nowrap;transition:background 0.2s,transform 0.1s;" onmouseover="this.style.background='var(--ink)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='var(--primary)'; this.style.transform='translateY(0)';" onactive="this.style.transform='translateY(1px)';">Appliquer</button>
                 </div>
-                <!-- Promo hint - active coupons -->
+                
                 <div id="promoSuggestions" style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px;">
                     <?php
                     $db = getDB();
@@ -245,7 +245,7 @@
 
             <a href="checkout.php" class="btn-checkout" style="margin-top:14px">Passer la commande</a>
             
-            <!-- WhatsApp checkout express button -->
+            
             <button onclick="orderCartViaWhatsApp()" style="display:block; width:100%; padding:16px; background:#25D366; color:#fff !important; text-align:center; font-weight:800; font-size:14px; border-radius:10px; transition:all 0.2s; border:none; cursor:pointer; margin-top:10px; display:flex; align-items:center; justify-content:center; gap:8px;" onmouseover="this.style.background='#20ba59'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='#25D366'; this.style.transform='translateY(0)';">
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.37 5.084L2 22l5.094-1.333a9.96 9.96 0 004.917 1.294h.005c5.507 0 9.99-4.478 9.99-9.986 0-2.67-1.037-5.178-2.92-7.062A9.925 9.925 0 0012.012 2zm5.859 13.987c-.242.684-1.2 1.252-1.644 1.3-1.12.124-2.527-.272-4.072-1.002-3.155-1.488-5.132-4.664-5.289-4.877-.158-.213-1.28-1.702-1.28-3.245 0-1.542.809-2.3 1.099-2.6.29-.3.636-.376.848-.376h.606c.218 0 .497-.082.775.596.284.696.97 2.37.103 2.545-.866.175-.727.562-.164 1.134.424.431.848.862 1.488 1.488.727.726 1.345 1.09 2.053 1.45.65.334.887.218 1.218-.164.33-.382 1.428-1.666 1.808-2.246.381-.58.763-.48 1.28-.272.515.207 3.284 1.548 3.513 1.666.23.118.382.176.438.272.057.098.057.562-.185 1.246z"/></svg>
                 Acheter via WhatsApp
@@ -501,7 +501,7 @@ function updatePageCollectorMeter(qty) {
     let percent = 0, label = '';
     if (qty >= 7) {
         percent = 100;
-        label = "🎉 Avantage Collectionneur Max débloqué ! (4 mangas OFFERTS)";
+        label = " Avantage Collectionneur Max débloqué ! (4 mangas OFFERTS)";
     } else if (qty >= 5) {
         percent = ((qty - 5) / 2) * 100;
         let needed = 7 - qty;

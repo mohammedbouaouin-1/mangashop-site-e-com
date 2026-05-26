@@ -1,4 +1,4 @@
-<!-- Modals System -->
+
 <style>
 .modal-overlay {
     display: none;
@@ -62,7 +62,7 @@
 .btn-ghost { background: var(--bg); color: var(--ink-soft); }
 </style>
 
-<!-- Product Modal -->
+
 <div id="productModal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-head">
@@ -143,7 +143,7 @@
   </div>
 </div>
 
-<!-- Category Modal -->
+
 <div id="categoryModal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-head">
@@ -182,7 +182,7 @@
   </div>
 </div>
 
-<!-- User Modal -->
+
 <div id="userModal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-head">
@@ -326,9 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<!-- ═══════════════════════════════════════════
-     BUNDLE MODAL
-════════════════════════════════════════════ -->
+
 <div id="bundleModal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-head">

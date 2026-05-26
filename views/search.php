@@ -36,7 +36,7 @@
             <div style="height:80px;"></div>
         <?php endif; ?>
 
-        <!-- POPULAIRES SECTION -->
+        
         <div class="section-header">
             <div>
                 <span class="section-label">Sélection</span>

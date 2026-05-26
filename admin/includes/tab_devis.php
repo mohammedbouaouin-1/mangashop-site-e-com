@@ -1,4 +1,4 @@
-<!-- Devis -->
+
 <div class="section-tab" id="tab-devis">
   <div class="page-header">
     <div>

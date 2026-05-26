@@ -1,11 +1,9 @@
 <?php require_once 'includes/header.php'; ?>
 
 
-<!-- ═══════════════════════════════════════════════════
-     DYNAMIC PREMIUM HERO SLIDER
-══════════════════════════════════════════════════════ -->
+
 <section style="position:relative; width:100%; height:85vh; min-height:600px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--bg);">
-    <!-- Animated background mesh -->
+    
     <div style="position:absolute; inset:0; z-index:0; background:radial-gradient(circle at 80% 20%, rgba(162,79,43,0.08) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(198,156,109,0.05) 0%, transparent 50%); filter:blur(40px);"></div>
 
     <div id="premiumSlider" style="position:relative; width:100%; max-width:1300px; height:100%; z-index:1; display:flex; align-items:center; opacity:0; transition:opacity 0.6s ease;">
@@ -43,7 +41,7 @@
         <?php endforeach; ?>
     </div>
 
-    <!-- Navigation / Progress -->
+    
     <div style="position:absolute; bottom:40px; left:5%; z-index:10; display:flex; align-items:center; gap:16px;">
         <div style="display:flex; gap:12px;" id="sliderDots">
             <?php foreach(array_slice($heroProducts, 0, 4) as $idx => $p): ?>
@@ -238,9 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-<!-- ═══════════════════════════════════════════════════
-     NOUVEAUTÉS (SAAS UI)
-══════════════════════════════════════════════════════ -->
+
 <section class="reveal" style="padding: 100px 40px; background:#fff; border-top:1px solid var(--border);">
     <div style="max-width:1200px; margin:0 auto;">
         
@@ -260,9 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     MEILLEURES VENTES (SAAS UI)
-══════════════════════════════════════════════════════ -->
+
 <section class="reveal" style="padding: 0 40px 100px; background:#fff;">
     <div style="max-width:1200px; margin:0 auto;">
         

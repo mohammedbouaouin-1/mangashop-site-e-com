@@ -1,4 +1,4 @@
-<!-- Utilisateurs & Clients -->
+
 <div class="section-tab" id="tab-users">
   <div class="page-header">
     <div>
@@ -73,7 +73,7 @@
             </td>
             <td>
               <div style="display:flex; gap:10px; align-items:center;">
-                <!-- Bouton Modifier -->
+                
                 <button onclick='editUser(<?= htmlspecialchars(json_encode([
                   "id"      => $u["id"],
                   "name"    => $u["name"],
@@ -87,7 +87,7 @@
                   style="background:none; border:none; color:var(--primary); cursor:pointer; padding:5px;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                 </button>
-                <!-- Bouton Supprimer (sauf pour soi-même) -->
+                
                 <?php if($u['id'] != ($_SESSION['admin_user']['id'] ?? 0)): ?>
                 <form method="POST" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer ce compte ?')">
                   <input type="hidden" name="action" value="delete_user">

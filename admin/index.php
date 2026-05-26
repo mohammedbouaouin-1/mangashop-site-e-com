@@ -577,7 +577,7 @@ if ($_SESSION['admin'] ?? false) {
     include 'includes/tab_dashboard.php';
     include 'includes/tab_orders.php';
     include 'includes/tab_products.php';
-    // include 'includes/tab_categories.php';
+    
     include 'includes/tab_devis.php';
     include 'includes/tab_newsletter.php';
     include 'includes/tab_bundles.php';
@@ -587,7 +587,7 @@ if ($_SESSION['admin'] ?? false) {
   </main>
 </div>
 
-<!-- Reset Modal -->
+
 <div id="resetModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
     <div style="font-size:40px;margin-bottom:16px;"></div>

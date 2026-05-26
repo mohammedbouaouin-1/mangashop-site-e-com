@@ -10,7 +10,7 @@ if (isset($_GET['commande_ok']) && !empty($_SESSION['last_order'])) {
     exit;
 }
 
-// Rediriger vers login si non connecté
+
 if (!isset($_SESSION['user'])) {
     header('Location: login.php?redirect=checkout.php');
     exit;
@@ -133,10 +133,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = 'Commander';
 
-// Créer un PaymentIntent Stripe côté serveur pour le Payment Element
+
 $stripeClientSecret = null;
 if (STRIPE_SECRET_KEY && !$success) {
-    $amountCents = (int)round($total * 100); // Montant en centimes MAD
+    $amountCents = (int)round($total * 100); 
     if ($amountCents > 0) {
         $fields = http_build_query([
             'amount'      => $amountCents,

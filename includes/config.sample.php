@@ -1,6 +1,6 @@
 <?php
 
-// Détection automatique de l'environnement (local vs production)
+
 $isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1', '::1']);
 
 if ($isLocal) {
@@ -9,10 +9,10 @@ if ($isLocal) {
     define('DB_PASS', '');
     define('DB_NAME', 'mangashop');
 } else {
-    define('DB_HOST', 'VOTRE_MYSQL_HOSTNAME_INFINITYFREE'); // Exemple: sql213.infinityfree.com
-    define('DB_USER', 'VOTRE_MYSQL_USERNAME_INFINITYFREE'); // Exemple: epiz_34123456
+    define('DB_HOST', 'VOTRE_MYSQL_HOSTNAME_INFINITYFREE'); 
+    define('DB_USER', 'VOTRE_MYSQL_USERNAME_INFINITYFREE'); 
     define('DB_PASS', 'VOTRE_MOT_DE_PASSE_INFINITYFREE');
-    define('DB_NAME', 'VOTRE_NOM_DE_BDD_INFINITYFREE');    // Exemple: epiz_34123456_mangashop
+    define('DB_NAME', 'VOTRE_NOM_DE_BDD_INFINITYFREE');    
 }
 
 define('SITE_NAME',  'MangaShop');
@@ -29,7 +29,7 @@ function getDB(): PDO {
     static $pdo = null;
     if ($pdo === null) {
         try {
-            // Tentative de connexion directe à la base de données (idéal pour la production / InfinityFree)
+            
             $pdo = new PDO(
                 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8mb4',
                 DB_USER, DB_PASS,
@@ -41,7 +41,7 @@ function getDB(): PDO {
             );
             autoInstallTables($pdo);
         } catch (PDOException $e) {
-            // Si la connexion échoue et que nous sommes en local, on tente de créer la base de données
+            
             if (DB_HOST === 'localhost' || DB_HOST === '127.0.0.1') {
                 try {
                     $pdo = new PDO(

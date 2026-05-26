@@ -1,4 +1,4 @@
-<!-- Commandes -->
+
 <div class="section-tab" id="tab-orders">
   <div class="page-header">
     <div>
@@ -6,13 +6,13 @@
       <div class="page-subtitle">Gestion des ventes et suivis de livraison.</div>
     </div>
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-      <!-- Export CSV -->
+      
       <a href="export.php?type=orders&csrf_token=<?= csrf_token() ?>"
         style="padding:10px 20px;background:var(--green);color:#fff;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Export CSV
       </a>
-      <!-- Filtre statut -->
+      
       <select id="filterOrderStatus" onchange="filterOrders()" class="inline-select" style="font-size:13px;padding:8px 12px;">
         <option value="">Tous les statuts</option>
         <option value="pending">En attente</option>
@@ -140,11 +140,11 @@
 .od-section-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;}
 </style>
 
-<!-- Modal Détails Commande -->
+
 <div id="orderDetailModal" class="modal-overlay">
   <div class="modal-content" style="max-width:800px; width:95%; max-height:92vh; display:flex; flex-direction:column; overflow:hidden;">
     
-    <!-- Header: title, date, and status side-by-side -->
+    
     <div class="modal-head" style="padding: 24px 32px; border-bottom:1px solid var(--border); background:var(--white); flex-shrink:0;">
       <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
         <div>
@@ -158,13 +158,13 @@
       </button>
     </div>
     
-    <!-- Body with custom cards -->
+    
     <div class="modal-body" style="padding: 32px; overflow-y:auto; overflow-x:hidden; flex:1; display:flex; flex-direction:column; gap:28px;">
       
-      <!-- Grid client + livraison in elegant modern cards -->
+      
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:24px;">
         
-        <!-- Card 1: Client details -->
+        
         <div style="background:var(--bg); border:1px solid var(--border); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:16px; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
           <div style="display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); padding-bottom:12px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" style="flex-shrink:0;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -185,7 +185,7 @@
           </div>
         </div>
         
-        <!-- Card 2: Livraison details -->
+        
         <div style="background:var(--bg); border:1px solid var(--border); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:16px; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
           <div style="display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); padding-bottom:12px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" style="flex-shrink:0;"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -195,7 +195,7 @@
             <div id="odCity" style="font-weight:900; font-size:16px; color:var(--ink); letter-spacing:-0.01em; margin-bottom:6px;"></div>
             <div id="odAddress" style="font-size:13px; color:var(--ink-soft); line-height:1.5; margin-bottom:16px;"></div>
             
-            <!-- Mode de Paiement -->
+            
             <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:16px;">
               <label style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em; display:flex; align-items:center; gap:4px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
@@ -209,7 +209,7 @@
               <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
               <input type="hidden" name="order_id" id="odOrderId">
               
-              <!-- Statut -->
+              
               <div style="display:flex; flex-direction:column; gap:6px;">
                 <label style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em;">Statut de la commande</label>
                 <select name="status" id="odStatusSelect" class="inline-select" style="width:100%; font-size:13px; padding:10px 14px; border-radius:10px; font-weight:700;">
@@ -221,7 +221,7 @@
                 </select>
               </div>
 
-              <!-- Livreur -->
+              
               <div style="display:flex; flex-direction:column; gap:6px;">
                 <label style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em;">Livreur Assigné</label>
                 <select name="livreur_id" id="odLivreurSelect" class="inline-select" style="width:100%; font-size:13px; padding:10px 14px; border-radius:10px; font-weight:700;">
@@ -235,13 +235,13 @@
                 </select>
               </div>
 
-              <!-- Numéro de Suivi -->
+              
               <div style="display:flex; flex-direction:column; gap:6px;">
                 <label style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em;">Numéro de suivi</label>
                 <input type="text" name="tracking_number" id="odTrackingInput" placeholder="Aucun numéro de suivi" style="width:100%; padding:10px 14px; border:1.5px solid var(--border); border-radius:10px; font-size:13px; font-family:monospace; font-weight:700; color:var(--ink); background:var(--white);">
               </div>
 
-              <!-- Bouton d'action de sauvegarde -->
+              
               <button type="submit" class="btn btn-primary" style="margin-top:4px; padding:12px; font-size:13px; border-radius:10px; display:flex; align-items:center; justify-content:center; gap:8px; width:100%;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                 Enregistrer les modifications
@@ -252,7 +252,7 @@
         
       </div>
       
-      <!-- List of ordered items -->
+      
       <div style="display:flex; flex-direction:column; gap:12px;">
         <span class="od-section-label" style="font-size:11px; font-weight:800; letter-spacing:0.06em; color:var(--muted); display:flex; align-items:center; gap:6px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -263,7 +263,7 @@
         </div>
       </div>
       
-      <!-- Total bottom centered -->
+      
       <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; border-top:1px solid var(--border); padding-top:24px; text-align:center; width:100%; gap:8px;">
         <span class="od-section-label" style="font-size:11px; font-weight:800; letter-spacing:0.08em; color:var(--muted); display:block; margin:0;">Total Commande</span>
         <div id="odTotal" style="font-family:'Playfair Display',serif; font-size:42px; font-weight:950; color:var(--ink); line-height:1;"></div>
@@ -271,7 +271,7 @@
       
     </div>
     
-    <!-- Footer with simple Close action -->
+    
     <div class="modal-footer" style="padding: 16px 32px; border-top:1px solid var(--border); background:var(--bg); flex-shrink:0; margin:0;">
       <button class="btn btn-ghost" onclick="closeModal('orderDetailModal')" style="padding:10px 24px; border-radius:10px; font-size:13px; font-weight:700;">Fermer</button>
     </div>
@@ -279,7 +279,7 @@
   </div>
 </div>
 
-<!-- Modal Numéro de Suivi -->
+
 <div id="trackingModal" class="modal-overlay">
   <div class="modal-content" style="max-width:440px;">
     <div class="modal-head">

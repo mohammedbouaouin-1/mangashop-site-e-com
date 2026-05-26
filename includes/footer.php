@@ -4,13 +4,13 @@
 </main>
 
 <footer style="background-color: var(--ink); color: #fff; padding: 100px 40px 60px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;">
-  <!-- Subtly glows in the background -->
+  
   <div style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(162,79,43,0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
   <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(198,156,109,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
 
   <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; position: relative; z-index: 1;">
     
-    <!-- Branding & Desc -->
+    
     <div>
       <a href="index.php" style="display: inline-flex; align-items: center; gap: 14px; margin-bottom: 32px; text-decoration: none;">
         <span style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary); color: #fff; border-radius: 10px; font-weight: 900; font-size: 20px; box-shadow: 0 4px 15px rgba(162,79,43,0.4);">M</span>
@@ -20,7 +20,7 @@
         La plateforme définitive pour votre collection manga. Des impressions premium aux éditions limitées, tout l'univers otaku à portée de clic.
       </p>
       
-      <!-- Socials -->
+      
       <div style="display: flex; gap: 20px;">
         <a href="#" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.05); color: #fff; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05);" onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-4px)'; this.style.borderColor='transparent';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <!-- Quick Links -->
+    
     <div>
       <h4 style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 30px; opacity: 0.9;">Ressources</h4>
       <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
@@ -44,7 +44,7 @@
       </ul>
     </div>
 
-    <!-- Legal -->
+    
     <div>
       <h4 style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 30px; opacity: 0.9;">Entreprise</h4>
       <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
@@ -54,7 +54,7 @@
       </ul>
     </div>
 
-    <!-- Contact -->
+    
     <div>
       <h4 style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 30px; opacity: 0.9;">Contact</h4>
       <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <!-- Newsletter Section (Centered & Improved) -->
+  
   <div style="max-width: 1200px; margin: 100px auto 0; text-align: center; position: relative; z-index: 2; padding-top: 80px; border-top: 1px solid rgba(255,255,255,0.06);">
     <div style="display: inline-block; padding: 10px 20px; background: rgba(162,79,43,0.1); border-radius: 30px; margin-bottom: 24px;">
       <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: var(--primary); text-transform: uppercase;">Newsletter Exclusive</span>
@@ -84,7 +84,7 @@
     </form>
   </div>
 
-  <!-- Copyright Row -->
+  
   <div style="max-width: 1200px; margin: 80px auto 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
     <p style="color: rgba(255,255,255,0.3); font-size: 14px; font-weight: 500;">
       &copy; <?= date('Y') ?> MangaShop. Tous droits réservés.
@@ -98,7 +98,7 @@
 
 <div id="globalToast" class="toast"></div>
 
-<!-- Bouton flottant Retour en haut (Back to Top) -->
+
 <button id="backToTopBtn" onclick="scrollToTop()" style="position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; border-radius: 50%; background: var(--white); color: var(--ink); border: 1px solid var(--border); box-shadow: var(--shadow-md); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); outline: none;" onmouseover="this.style.background='var(--ink)'; this.style.color='#fff'; this.style.transform='translateY(-4px) scale(1.05)'; this.style.boxShadow='var(--shadow-lg)';" onmouseout="this.style.background='var(--white)'; this.style.color='var(--ink)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='var(--shadow-md)';">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>

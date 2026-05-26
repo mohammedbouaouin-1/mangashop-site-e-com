@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <!-- BUG FIX: champ de confirmation du mot de passe ajouté -->
+        
         <div class="form-group">
             <label style="display:block; margin-bottom:8px; font-size:13px; font-weight:600;">Confirmer le mot de passe</label>
             <div style="position:relative; display:flex; align-items:center;">

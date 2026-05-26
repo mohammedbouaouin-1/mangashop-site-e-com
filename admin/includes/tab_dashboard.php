@@ -1,4 +1,4 @@
-<!-- Vue d'ensemble -->
+
 <div class="section-tab active" id="tab-dashboard">
   <div class="page-header">
     <div>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <!-- Alerte stock faible -->
+  
   <?php if (!empty($low_stock_products)): ?>
   <div class="stock-alert" style="background:#fff1f0;border-left:4px solid var(--red);border-radius:12px;padding:20px 24px;margin-bottom:32px;display:flex;align-items:flex-start;gap:16px;">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#af3e3e" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -32,7 +32,7 @@
   </div>
   <?php endif; ?>
 
-  <!-- Stats cards -->
+  
   <div class="stats-grid">
     <div class="stat-card">
       <div>
@@ -72,7 +72,7 @@
     </div>
   </div>
 
-  <!-- Dernières transactions -->
+  
   <div class="card">
     <div class="card-head">
       <h3>Dernières Transactions</h3>
@@ -110,7 +110,7 @@
     </div>
   </div>
 
-  <!-- Graphiques -->
+  
   <?php
   $monthlyData = [];
   for ($i = 5; $i >= 0; $i--) {

@@ -1,4 +1,4 @@
-<!-- Stock Manga -->
+
 <div class="section-tab" id="tab-products">
   <div class="page-header">
     <div>

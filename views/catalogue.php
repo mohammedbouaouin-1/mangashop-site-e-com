@@ -80,15 +80,15 @@ input[type="range"]::-webkit-slider-thumb:hover {
     </div>
 
     <div class="catalogue-layout" style="display:grid; grid-template-columns: 260px 1fr; gap:48px; align-items:start;">
-        <!-- SIDEBAR FILTERS -->
+        
         <aside class="filters-sidebar" style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; box-shadow:var(--shadow-sm); position:sticky; top:100px;">
-            <!-- Recherche rapide -->
+            
             <div class="filter-group" style="margin-bottom:24px;">
                 <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Recherche rapide</h4>
                 <input type="text" placeholder="Titre, auteur, mot-clé..." value="<?= e($filters['q']) ?>" oninput="filterSearch(this.value)" style="width:100%; border:1.5px solid var(--border); background:var(--bg); padding:10px 12px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; color:var(--ink); outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'">
             </div>
 
-            <!-- Genres -->
+            
             <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
                 <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Genres</h4>
                 <div style="display:flex; flex-direction:column; gap:12px;">
@@ -102,7 +102,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
                 </div>
             </div>
 
-            <!-- Curseur de budget -->
+            
             <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
                 <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Budget Max</h4>
                 <div style="display:flex; flex-direction:column; gap:12px;">
@@ -113,7 +113,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
                 </div>
             </div>
 
-            <!-- Vues rapides -->
+            
             <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
                 <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Vues rapides</h4>
                 <div style="display:flex; flex-direction:column; gap:12px;">
@@ -138,9 +138,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
             </a>
         </aside>
 
-        <!-- PRODUCTS -->
+        
         <div>
-            <!-- Sort bar -->
+            
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px; padding:16px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);">
                 <div style="font-size:13px; font-weight:500; color:var(--muted);">
                     Affichage <strong id="displayRange">1–<?= min($perPage, $total) ?></strong> sur <strong id="displayTotal"><?= $total ?></strong> résultats
@@ -158,7 +158,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
                 </div>
             </div>
 
-            <!-- Active Filters Badges -->
+            
             <div id="activeFiltersContainer" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;"></div>
 
             <div id="productsGridContainer" style="transition: opacity 0.2s ease;">
@@ -167,7 +167,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
                     <?php foreach ($products as $p): include 'includes/product_card.php'; endforeach; ?>
                 </div>
 
-                <!-- Pagination -->
+                
                 <?php if ($pages > 1): ?>
                 <div style="display:flex; justify-content:center; gap:8px; margin-top:64px;">
                     <?php if ($page > 1): ?>

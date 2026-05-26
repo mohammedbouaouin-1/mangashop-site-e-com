@@ -1,4 +1,4 @@
-<!-- Stock Catégories -->
+
 <div class="section-tab" id="tab-categories">
   <div class="page-header">
     <div>

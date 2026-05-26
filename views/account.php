@@ -577,7 +577,7 @@
 
 <div class="account-v4 section-container" style="max-width:1100px; margin: 40px auto; padding: 0 20px; min-height: 50vh;">
     
-    <!-- 1. Header Utilisateur Modernisé -->
+    
     <div class="acct-header">
         <div style="display:flex; align-items:center; gap:20px;">
             <div class="acct-avatar">
@@ -602,7 +602,7 @@
         </div>
     </div>
 
-    <!-- 2. Tabs Animées et Élégantes -->
+    
     <div class="acct-tabs-wrapper">
         <?php if (($user['role'] ?? '') === 'livreur'): ?>
             <a href="?tab=deliveries" class="acct-tab <?= $tab==='deliveries'?'active':'' ?>">
@@ -631,7 +631,7 @@
         <?php endif; ?>
     </div>
 
-    <!-- 3 & 4. Contenu Minimaliste et Premium -->
+    
     <div class="account-content">
         <?php if ($tab === 'profile'): ?>
             <?php
@@ -641,7 +641,7 @@
             if (!empty($_SESSION['profile_error']))   { $profileError   = $_SESSION['profile_error'];   unset($_SESSION['profile_error']); }
             ?>
             <div class="acct-profile-layout">
-                <!-- Formulaire à gauche -->
+                
                 <div class="acct-card" style="padding:32px;">
                     <h2 style="font-size:18px; font-weight:800; margin-bottom:24px; color:var(--ink);">Modifier mon profil</h2>
                     <?php if ($profileSuccess): ?><div style="background:#ecfdf5;color:#065f46;padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:20px;border:1px solid #a7f3d0;"><?= e($profileSuccess) ?></div><?php endif; ?>
@@ -702,7 +702,7 @@
                     </form>
                 </div>
                 
-                <!-- Résumé des statistiques à droite -->
+                
                 <div class="acct-summary-card">
                     <h3 style="font-size:16px; font-weight:800; color:var(--ink); border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:4px;">Résumé de mon compte</h3>
                     
@@ -766,7 +766,7 @@
                 ?>
                 <?php if ($profileSuccess): ?><div style="background:#ecfdf5;color:#065f46;padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:20px;border:1px solid #a7f3d0;"><?= e($profileSuccess) ?></div><?php endif; ?>
 
-                <!-- Tableau de bord récapitulatif du livreur -->
+                
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:16px;">
                     <div>
                         <h2 style="font-size:20px; font-weight:900; letter-spacing:-0.03em; color:var(--ink); display:flex; align-items:center; gap:10px;">
@@ -778,7 +778,7 @@
                 </div>
 
                 <div class="livreur-stats-grid">
-                    <!-- Total Livraisons -->
+                    
                     <div class="livreur-stat-card">
                         <div class="livreur-stat-icon" style="background:var(--bg); color:var(--primary);">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -789,7 +789,7 @@
                         </div>
                     </div>
                     
-                    <!-- Livrées & Finalisées -->
+                    
                     <div class="livreur-stat-card">
                         <div class="livreur-stat-icon" style="background:#e6f4ea; color:var(--green);">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -800,10 +800,10 @@
                         </div>
                     </div>
                     
-                    <!-- Espèces à collecter/reverser en MAD (banknote icon) -->
+                    
                     <div class="livreur-stat-card">
                         <div class="livreur-stat-icon" style="background:#fffbeb; color:#b45309;">
-                            <!-- Universal premium banknote icon representing MAD -->
+                            
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="6" width="20" height="12" rx="2" />
                                 <circle cx="12" cy="12" r="2" />
@@ -826,14 +826,14 @@
                         ?>
                             <div class="livreur-order-card" style="border-left-color: <?= $cardBorderColor ?>;">
                                 
-                                <!-- Entête du bon de livraison -->
+                                
                                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:20px; margin-bottom:4px; flex-wrap:wrap; gap:16px;">
                                     <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
                                         <span style="background:var(--bg); color:var(--ink); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; padding:6px 14px; border-radius:30px; border:1px solid var(--border);">
                                             Commande #<?= e($o['id']) ?>
                                         </span>
                                         
-                                        <!-- Mode de Facturation / Paiement -->
+                                        
                                         <?php 
                                         $isCOD = !str_contains($o['notes'] ?? '', 'Paiement: Carte');
                                         if ($isCOD && $o['status'] !== 'delivered'): 
@@ -860,10 +860,10 @@
                                     </div>
                                 </div>
 
-                                <!-- Corps du bon de livraison : Double colonnes -->
+                                
                                 <div class="livreur-order-grid">
                                     
-                                    <!-- Colonne Gauche : Client, Contact et Manga -->
+                                    
                                     <div style="display:flex; flex-direction:column; gap:24px;">
                                         <div>
                                             <span style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em; display:block; margin-bottom:10px;">Destinataire</span>
@@ -878,7 +878,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Contact rapide -->
+                                        
                                         <?php if ($o['customer_phone']): ?>
                                             <div>
                                                 <span style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em; display:block; margin-bottom:10px;">Contact Client (<?= e($o['customer_phone']) ?>)</span>
@@ -902,7 +902,7 @@
                                             </div>
                                         <?php endif; ?>
 
-                                        <!-- Détails du colis -->
+                                        
                                         <div>
                                             <span style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em; display:block; margin-bottom:8px;">Description du colis</span>
                                             <div style="font-size:13.5px; color:var(--ink-soft); line-height:1.6; background:var(--bg); border:1px solid var(--border); border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:10px;">
@@ -923,10 +923,10 @@
                                         </div>
                                     </div>
 
-                                    <!-- Colonne Droite : Adresse de livraison & Contrôle du Statut -->
+                                    
                                     <div style="display:flex; flex-direction:column; gap:24px;">
                                         
-                                        <!-- Adresse et GPS -->
+                                        
                                         <div>
                                             <span style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em; display:block; margin-bottom:10px;">Adresse de livraison</span>
                                             <div class="livreur-gps-box">
@@ -942,7 +942,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Modification de statut interactive sous forme d'interrupteurs segmentés -->
+                                        
                                         <div>
                                             <span style="font-size:10px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em; display:block; margin-bottom:12px;">Statut de la livraison</span>
                                             
@@ -1038,7 +1038,7 @@
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2.5" id="tl-arrow-<?= $o['id'] ?>" style="transition:transform 0.3s;"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                     </div>
                                 </div>
-                                <!-- Timeline suivi -->
+                                
                                 <div class="order-timeline" id="timeline-<?= $o['id'] ?>">
                                     <?php if ($isCancelled): ?>
                                         <div style="text-align:center;padding:16px;color:var(--red);font-weight:700;font-size:14px;">Commande annulée</div>

@@ -212,7 +212,7 @@
                 </div>
             </div>
 
-            <!-- Ajout au panier & Quantité -->
+            
             <div style="display:flex; gap:16px; margin-bottom:20px;">
                 <div style="border:1px solid var(--border); border-radius:var(--radius-full); display:flex; align-items:center; padding:4px; max-width:140px; background:var(--white); box-shadow:var(--shadow-sm);">
                     <button onclick="changeProductQty(-1)" style="width:40px; height:40px; font-size:20px; color:var(--ink); font-weight:500; transition:background 0.2s; border-radius:50%;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'">−</button>
@@ -228,13 +228,13 @@
                 Acheter instantanément
             </button>
 
-            <!-- Bouton WhatsApp Express (Module 2) -->
+            
             <button onclick="orderViaWhatsApp()" style="width:100%; padding:20px; border-radius:var(--radius-full); font-size:15px; font-weight:700; background:#25D366; color:#fff; border:none; box-shadow:0 6px 15px rgba(37, 211, 102, 0.25); cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:10px; margin-top:16px;" onmouseover="this.style.boxShadow='0 8px 20px rgba(37, 211, 102, 0.4)'; this.style.transform='translateY(-2px)'; this.style.background='#20ba59';" onmouseout="this.style.boxShadow='0 6px 15px rgba(37, 211, 102, 0.25)'; this.style.transform='translateY(0)'; this.style.background='#25D366';">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0;"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.37 5.084L2 22l5.094-1.333a9.96 9.96 0 004.917 1.294h.005c5.507 0 9.99-4.478 9.99-9.986 0-2.67-1.037-5.178-2.92-7.062A9.925 9.925 0 0012.012 2zm5.859 13.987c-.242.684-1.2 1.252-1.644 1.3-1.12.124-2.527-.272-4.072-1.002-3.155-1.488-5.132-4.664-5.289-4.877-.158-.213-1.28-1.702-1.28-3.245 0-1.542.809-2.3 1.099-2.6.29-.3.636-.376.848-.376h.606c.218 0 .497-.082.775.596.284.696.97 2.37.103 2.545-.866.175-.727.562-.164 1.134.424.431.848.862 1.488 1.488.727.726 1.345 1.09 2.053 1.45.65.334.887.218 1.218-.164.33-.382 1.428-1.666 1.808-2.246.381-.58.763-.48 1.28-.272.515.207 3.284 1.548 3.513 1.666.23.118.382.176.438.272.057.098.057.562-.185 1.246z"/></svg>
                 Commander via WhatsApp
             </button>
 
-            <!-- Reassurance -->
+            
             <div style="margin-top:48px; padding:24px; background:var(--white); border-radius:var(--radius-lg); border:1px solid var(--border); box-shadow:var(--shadow-sm);">
                 <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px; font-size:13px; font-weight:600; color:var(--ink-soft);">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -250,7 +250,7 @@
                 </div>
             </div>
 
-            <!-- Description -->
+            
             <div style="margin-top:48px;">
                 <h3 style="font-size:20px; font-weight:800; border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:24px; color:var(--ink);">Synopsis</h3>
                 <div style="font-size:15px; color:var(--ink-soft); line-height:1.7; font-weight:400;"><?= nl2br(e($p['description'])) ?></div>
@@ -263,7 +263,7 @@
                 <?php endif; ?>
             </div>
 
-            <!-- Metadata -->
+            
             <div style="margin-top:48px;">
                 <h3 style="font-size:20px; font-weight:800; border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:24px; color:var(--ink);">Métadonnées</h3>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
@@ -276,7 +276,7 @@
         </div>
     </div>
 
-    <!-- Mega Deals -->
+    
     <div style="margin-top:80px; max-width:1200px; margin-left:auto; margin-right:auto; background:var(--bg); border:1px solid var(--border); padding:64px 48px; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); text-align:center; position:relative; overflow:hidden;">
         <h2 style="font-size:32px; font-weight:800; margin-bottom:16px; position:relative; z-index:1; color:var(--ink);">Avantage <span style="color:var(--primary);">Collectionneur</span></h2>
         <p style="font-size:16px; color:var(--ink-soft); max-width:600px; margin:0 auto 48px; position:relative; z-index:1; font-weight:500;">Étendez votre bibliothèque astucieusement. Nos algorithmes déduisent automatiquement les mangas offerts dans votre panier.</p>
@@ -300,7 +300,7 @@
         </div>
     </div>
 
-    <!-- Avis Clients -->
+    
     <?php
     $reviewSuccess = !empty($_GET['review']) && $_GET['review'] === 'ok';
     $reviewError   = !empty($_GET['review_err']) ? $_GET['review_err'] : '';
@@ -318,7 +318,7 @@
         <?php endif; ?>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
-            <!-- Liste des avis -->
+            
             <div style="display:flex; flex-direction:column; gap:16px;">
                 <?php if (empty($reviews)): ?>
                     <div style="text-align:center; padding:48px 20px; background:var(--bg); border-radius:var(--radius-lg); border:1px solid var(--border);">
@@ -335,7 +335,7 @@
                                 <div style="width:36px; height:36px; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800;"><?= strtoupper(mb_substr($rev['customer_name'],0,1)) ?></div>
                                 <span style="font-weight:700; font-size:14px; color:var(--ink);"><?= e($rev['customer_name']) ?></span>
                             </div>
-                            <div style="color:#eab308; font-size:16px;"><?= str_repeat('★', (int)$rev['rating']) ?><?= str_repeat('☆', 5-(int)$rev['rating']) ?></div>
+                            <div style="color:#eab308; font-size:16px;"><?= str_repeat('', (int)$rev['rating']) ?><?= str_repeat('', 5-(int)$rev['rating']) ?></div>
                         </div>
                         <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0;"><?= e($rev['comment']) ?></p>
                         <div style="font-size:11px; color:var(--muted); margin-top:10px; font-weight:500;"><?= date('d M Y', strtotime($rev['created_at'])) ?></div>
@@ -344,7 +344,7 @@
                 <?php endif; ?>
             </div>
 
-            <!-- Formulaire avis -->
+            
             <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow-sm); position:sticky; top:100px;">
                 <h3 style="font-size:16px; font-weight:800; margin-bottom:20px; color:var(--ink);">Laisser un avis</h3>
                 <?php if (isset($_SESSION['user'])): ?>
@@ -355,7 +355,7 @@
                         <label style="display:block; font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px;">Note</label>
                         <div style="display:flex; gap:6px;" id="starRow">
                             <?php for ($s=1; $s<=5; $s++): ?>
-                            <button type="button" onclick="setRating(<?= $s ?>)" id="star-<?= $s ?>" aria-label="Note <?= $s ?> étoile<?= $s > 1 ? 's' : '' ?>" style="font-size:28px; background:none; border:none; cursor:pointer; color:#d1d5db; transition:color 0.15s; padding:0;">★</button>
+                            <button type="button" onclick="setRating(<?= $s ?>)" id="star-<?= $s ?>" aria-label="Note <?= $s ?> étoile<?= $s > 1 ? 's' : '' ?>" style="font-size:28px; background:none; border:none; cursor:pointer; color:#d1d5db; transition:color 0.15s; padding:0;"></button>
                             <?php endfor; ?>
                         </div>
                         <input type="hidden" name="rating" id="ratingInput" value="">
@@ -384,7 +384,7 @@
         </div>
     </div>
 
-    <!-- Related Products -->
+    
     <?php if ($related): ?>
     <div style="margin-top:100px; max-width:1200px; margin-left:auto; margin-right:auto;">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px; border-bottom:1px solid var(--border); padding-bottom:24px;">
@@ -408,7 +408,7 @@
     <?php endif; ?>
 </div>
 
-<!-- Modal Liseuse Booklet -->
+
 <div class="booklet-modal" id="bookletModal" onclick="closeBookletReader(event)">
     <div class="booklet-container" onclick="event.stopPropagation()">
         <div class="booklet-header">
@@ -416,7 +416,7 @@
             <button onclick="closeBookletReader(null)" style="background:none; border:none; font-size:24px; color:var(--muted); cursor:pointer; font-weight:bold;">&times;</button>
         </div>
         <div class="booklet-body">
-            <!-- Page 1 -->
+            
             <div class="booklet-page active" id="bPage-1">
                 <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; text-align:center; gap:20px; font-family:'Playfair Display', serif;">
                     <h2 style="font-size:24px; font-weight:900; color:var(--primary); margin:0;"><?= e($p['title']) ?></h2>
@@ -428,7 +428,7 @@
                 </div>
             </div>
             
-            <!-- Page 2 -->
+            
             <div class="booklet-page" id="bPage-2" style="padding:0;">
                 <div style="width:100%; height:100%; position:relative;">
                     <img src="<?= e($p['image_url']) ?>" style="width:100%; height:100%; object-fit:cover;" alt="Cover Page">
@@ -436,7 +436,7 @@
                 </div>
             </div>
             
-            <!-- Page 3 -->
+            
             <div class="booklet-page" id="bPage-3">
                 <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; text-align:center; gap:16px;">
                     <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:900; margin:0;">Prêt à lire la suite ?</h3>

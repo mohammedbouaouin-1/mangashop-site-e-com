@@ -1,4 +1,4 @@
-<!-- Newsletter -->
+
 <div class="section-tab" id="tab-newsletter">
   <div class="page-header">
     <div>

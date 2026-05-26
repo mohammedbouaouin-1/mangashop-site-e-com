@@ -1,4 +1,4 @@
-<!-- Bundles / Packs -->
+
 <div class="section-tab" id="tab-bundles">
   <div class="page-header">
     <div>

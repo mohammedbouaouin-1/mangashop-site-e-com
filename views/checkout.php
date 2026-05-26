@@ -298,7 +298,7 @@
 
     <?php else: ?>
     <div class="checkout-content">
-        <!-- Formulaire -->
+        
         <div>
             <h1 class="checkout-main-title">Finaliser votre commande</h1>
             <p class="checkout-desc">Presque terminé ! Remplissez ces derniers détails pour recevoir votre collection.</p>
@@ -425,7 +425,7 @@
             </form>
         </div>
 
-        <!-- Résumé -->
+        
         <aside class="sticky-summary">
             <div class="order-card" style="padding: 32px;">
                 <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 24px;">Votre Panier</h3>

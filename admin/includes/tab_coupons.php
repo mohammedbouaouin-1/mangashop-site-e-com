@@ -1,7 +1,7 @@
 <?php
 $coupons = $db->query("SELECT * FROM promo_codes ORDER BY id DESC")->fetchAll();
 ?>
-<!-- Codes Promo -->
+
 <div class="section-tab" id="tab-coupons">
   <div class="page-header">
     <div>
@@ -67,7 +67,7 @@ $coupons = $db->query("SELECT * FROM promo_codes ORDER BY id DESC")->fetchAll();
   </div>
 </div>
 
-<!-- Modal Coupon -->
+
 <div id="couponModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
   <div style="background:#fff; border-radius:16px; padding:32px; width:100%; max-width:460px; box-shadow:0 20px 60px rgba(0,0,0,0.2);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">

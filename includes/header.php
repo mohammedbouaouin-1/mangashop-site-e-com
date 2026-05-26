@@ -28,16 +28,16 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
 </head>
 
 <body style="padding-top: 80px;">
-  <!-- SAAS FLOATING NAVBAR -->
+  
   <header style="position:fixed; top:16px; left:50%; transform:translateX(-50%); width:95%; max-width:1200px; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid var(--border); box-shadow:var(--shadow-md); border-radius:var(--radius-full); display:flex; align-items:center; justify-content:space-between; padding:12px 24px; z-index:1000; transition:all 0.3s ease;" id="siteHeader">
     
-    <!-- LEFT: Brand -->
+    
     <a href="index.php" style="display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; color:var(--ink); letter-spacing:-0.03em; text-decoration:none;">
       <div style="width:32px; height:32px; background:var(--primary); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px;">M</div>
       MangaShop
     </a>
 
-    <!-- CENTER: Navigation -->
+    
     <nav style="display:flex; align-items:center; gap:28px;">
       <a href="index.php" style="font-size:14px; font-weight:600; color:<?= $currentPage === 'index' ? 'var(--ink)' : 'var(--ink-soft)' ?>; transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='<?= $currentPage === 'index' ? 'var(--ink)' : 'var(--ink-soft)' ?>'">Accueil</a>
       <a href="catalogue.php" style="font-size:14px; font-weight:600; color:<?= $currentPage === 'catalogue' ? 'var(--ink)' : 'var(--ink-soft)' ?>; transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='<?= $currentPage === 'catalogue' ? 'var(--ink)' : 'var(--ink-soft)' ?>'">Catalogue</a>
@@ -56,32 +56,32 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
       <?php endif; ?>
     </nav>
 
-    <!-- RIGHT: Actions -->
+    
     <div style="display:flex; align-items:center; gap:16px;">
-      <!-- Minimal Search -->
+      
       <form action="search.php" method="GET" style="position:relative; width:200px;" id="headerSearchForm">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none;"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
         <input type="text" name="q" id="headerSearchInput" placeholder="Rechercher..." value="<?= isset($_GET['q']) ? e($_GET['q']) : '' ?>" autocomplete="off"
           style="width:100%; border:none; background:rgba(0,0,0,0.04); padding:8px 12px 8px 34px; border-radius:var(--radius-full); font-size:13px; font-weight:500; font-family:'Inter', sans-serif; color:var(--ink); outline:none; transition:background 0.2s;">
         
-        <!-- Suggestions Panel -->
+        
         <div id="headerSearchSuggestions" style="position:absolute; top:calc(100% + 8px); right:0; width:320px; background:var(--white); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-float); display:none; flex-direction:column; overflow:hidden; z-index:9999;"></div>
       </form>
 
       <div style="width:1px; height:16px; background:var(--border);"></div>
 
-      <!-- Account -->
+      
       <a href="account.php" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Mon compte">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
       </a>
 
-      <!-- Dark Mode Toggle -->
+      
       <button onclick="toggleDarkMode()" id="darkModeToggle" style="color:var(--ink); padding:6px; transition:color 0.2s; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--ink)'" title="Basculer le thème">
         <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
 
-      <!-- Cart Button Pill -->
+      
       <button onclick="toggleCart()" style="display:flex; align-items:center; gap:8px; padding:8px 16px; background:var(--ink); color:#fff; border-radius:var(--radius-full); font-size:13px; font-weight:700; transition:all 0.2s; box-shadow:var(--shadow-sm); border:none; cursor:pointer;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='var(--shadow-md)'; this.style.background='var(--primary)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'; this.style.background='var(--ink)';">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span id="cartBadge"><?= $cartQty ?></span>
@@ -89,14 +89,14 @@ $cats = getDB()->query("SELECT * FROM categories ORDER BY id")->fetchAll();
     </div>
   </header>
 
-  <!-- Panier drawer -->
+  
   <div class="cart-overlay" id="cartOverlay"></div>
   <div class="cart-drawer" id="cartDrawer" style="box-shadow:var(--shadow-float); border-left:1px solid var(--border);">
     <div class="cart-drawer-head" style="border-bottom:1px solid var(--border); padding:24px;">
       <h3 style="font-weight:800; font-size:18px;">Panier</h3>
       <button class="cart-close" onclick="toggleCart()" style="font-size:24px; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--ink-soft)'">&times;</button>
     </div>
-    <!-- Jauge de livraison gratuite dynamique -->
+    
     <div id="drawerShippingMeter" style="padding: 16px 24px 0 24px;"></div>
     <div class="cart-items" id="cartItems">
       <div class="cart-empty" style="text-align:center; padding:64px 24px; color:var(--muted); font-weight:500;">Votre panier est vide</div>

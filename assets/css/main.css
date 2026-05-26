@@ -423,7 +423,7 @@ img{display:block;max-width:100%;height:auto}
   border-bottom: 1px solid var(--border) !important;
 }
 
-/* Dark mode button overrides for high contrast premium look */
+
 .dark-mode .btn-main,
 .dark-mode .btn-saas,
 .dark-mode .btn-outline-dark,

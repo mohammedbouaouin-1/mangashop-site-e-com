@@ -9,7 +9,7 @@
         <span style="font-size:13px;color:var(--muted);font-weight:500"><?= count($bundles) ?> pack<?= count($bundles) > 1 ? 's' : '' ?> disponible<?= count($bundles) > 1 ? 's' : '' ?></span>
     </div>
 
-    <!-- SECTEUR ONGLETS -->
+    
     <div style="display:flex; justify-content:center; gap:16px; margin-bottom:48px; border-bottom: 2px solid var(--border); padding-bottom: 16px;">
         <button onclick="switchTab('packs')" id="tabBtnPacks" class="btn-tab active" style="padding:14px 28px; font-weight:700; font-size:14px; border-radius:var(--radius-full); transition:all 0.2s; border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; gap: 8px;">
             Packs Curatés
@@ -19,12 +19,12 @@
         </button>
     </div>
 
-    <!-- ONGLET 1 : PACKS CURATÉS -->
+    
     <div id="tabContentPacks">
         <div class="catalogue-layout">
-            <!-- SIDEBAR FILTERS -->
+            
             <aside class="filters-sidebar" style="background:var(--white); border:1px solid var(--border); border-radius:16px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.03);">
-                <!-- Search -->
+                
                 <div class="filter-group" style="margin-bottom:28px;">
                     <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Recherche</h4>
                     <form action="bundles.php" method="GET" style="position:relative;">
@@ -35,7 +35,7 @@
                     </form>
                 </div>
 
-                <!-- Price Filter -->
+                
                 <div class="filter-group" style="margin-bottom:28px;">
                     <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Budget Max</h4>
                     <div style="display:flex; flex-direction:column; gap:12px;">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <!-- Quick Filters -->
+                
                 <div class="filter-group" style="margin-bottom:28px;">
                     <h4 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--ink); text-transform:uppercase; letter-spacing:0.5px;">Sélection</h4>
                     <div style="display:flex; flex-direction:column; gap:12px;">
@@ -64,9 +64,9 @@
                 </a>
             </aside>
 
-            <!-- BUNDLES GRID -->
+            
             <div>
-                <!-- Sort Bar -->
+                
                 <div class="sort-bar" style="margin-bottom:32px;">
                     <div style="font-size:13px;color:var(--muted)">
                         Affiche <?= count($bundles) ?> packs exceptionnels
@@ -138,10 +138,10 @@
         </div>
     </div>
 
-    <!-- ONGLET 2 : CRÉATEUR DE PACK SUR-MESURE -->
+    
     <div id="tabContentCustom" style="display:none; padding-bottom: 80px;">
         <div class="custom-builder-container">
-            <!-- Left: Grid of available manga volumes -->
+            
             <div>
                 <div style="margin-bottom: 24px;">
                     <h2 style="font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 800; color: var(--ink); margin-bottom: 8px;">Sélectionnez vos volumes</h2>
@@ -167,14 +167,14 @@
                 </div>
             </div>
             
-            <!-- Right: Dynamic checkout sticky card -->
+            
             <div class="order-summary" style="position: sticky; top: 120px;">
                 <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; color: var(--ink);">
                     Pack Sur-Mesure
                 </h3>
                 <p style="font-size: 12px; color: var(--ink-soft); margin-bottom: 12px; font-weight:600;">Composez et économisez en direct</p>
                 
-                <!-- 3D Collector Box -->
+                
                 <div class="collector-box-scene">
                     <div class="collector-box-3d" id="collectorBox3d">
                         <div class="collector-box-face collector-box-front">
@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 
-                <!-- gift progress tracker -->
+                
                 <div style="margin-bottom:28px;">
                     <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; color:var(--ink); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em;">
                         <span>Objectif cadeaux</span>
@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 
-                <!-- selected items count list -->
+                
                 <div style="border-top:1px solid var(--border); padding-top:20px; margin-bottom:24px;">
                     <div style="font-size:11.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px;">Volumes sélectionnés (<span id="selectedCount">0</span>)</div>
                     <div id="selectedVolumesList" style="display:flex; flex-direction:column; gap:8px; max-height:180px; overflow-y:auto; padding-right:4px;">
@@ -220,7 +220,7 @@
                     </div>
                 </div>
                 
-                <!-- pricing table -->
+                
                 <div style="border-top:1px solid var(--border); padding-top:20px; margin-bottom:24px; font-size:14px;">
                     <div class="summary-row">
                         <span>Sous-total brut</span>
@@ -252,7 +252,7 @@
     </div>
 </div>
 
-<!-- STYLE DÉDIÉ CRÉATEUR -->
+
 <style>
 /* 3D COLLECTOR BOX STYLES */
 @keyframes boxShake {

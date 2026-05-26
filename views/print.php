@@ -2,7 +2,7 @@
 
 <div style="background: var(--bg); padding-bottom: 80px;">
 
-    <!-- CSS SIMULATEUR 3D PREMIUM, DRAG & DROP & GLASSMORPHISM -->
+    
     <style>
         .scene-container-3d {
             perspective: 1200px;
@@ -410,27 +410,27 @@
         }
     </style>
 
-    <!-- HERO SECTION -->
+    
     <section class="print-hero-section" style="padding: 120px 20px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: var(--bg);">
         
-        <!-- Floating Manga Background Elements -->
+        
         <div class="floating-mangas-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1;">
-            <!-- Cover 1: One Piece (Top Left) -->
+            
             <div class="floating-manga fm-1" style="position: absolute; top: 8%; left: 5%; width: 110px; height: 160px; transform: rotate(-15deg); opacity: 0.06; filter: grayscale(100%); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border); background-image: url('<?= asset('assets/images/covers/one-piece-vol-1.jpg') ?>'); background-size: cover; background-position: center; animation: floatManga1 8s ease-in-out infinite alternate;"></div>
             
-            <!-- Cover 2: Berserk (Bottom Left) -->
+            
             <div class="floating-manga fm-2" style="position: absolute; bottom: 8%; left: 12%; width: 120px; height: 175px; transform: rotate(12deg); opacity: 0.04; filter: grayscale(100%); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border); background-image: url('<?= asset('assets/images/covers/berserk-vol-1.jpg') ?>'); background-size: cover; background-position: center; animation: floatManga2 10s ease-in-out infinite alternate;"></div>
             
-            <!-- Cover 3: Chainsaw Man (Top Right) -->
+            
             <div class="floating-manga fm-3" style="position: absolute; top: 12%; right: 6%; width: 115px; height: 165px; transform: rotate(18deg); opacity: 0.06; filter: grayscale(100%); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border); background-image: url('<?= asset('assets/images/covers/chainsaw-man-vol-1.jpg') ?>'); background-size: cover; background-position: center; animation: floatManga3 9s ease-in-out infinite alternate;"></div>
             
-            <!-- Cover 4: Vagabond (Bottom Right) -->
+            
             <div class="floating-manga fm-4" style="position: absolute; bottom: 6%; right: 10%; width: 125px; height: 180px; transform: rotate(-10deg); opacity: 0.05; filter: grayscale(100%); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border); background-image: url('<?= asset('assets/images/covers/vagabond-vol-1.jpg') ?>'); background-size: cover; background-position: center; animation: floatManga4 11s ease-in-out infinite alternate;"></div>
             
-            <!-- Cover 5: Death Note (Center Left) -->
+            
             <div class="floating-manga fm-5" style="position: absolute; top: 40%; left: -2%; width: 100px; height: 145px; transform: rotate(8deg); opacity: 0.03; filter: grayscale(100%); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border); background-image: url('<?= asset('assets/images/covers/death-note-vol-1.jpg') ?>'); background-size: cover; background-position: center; animation: floatManga1 12s ease-in-out infinite alternate;"></div>
 
-            <!-- Cover 6: Naruto (Center Right) -->
+            
             <div class="floating-manga fm-6" style="position: absolute; top: 44%; right: -2%; width: 100px; height: 145px; transform: rotate(-12deg); opacity: 0.03; filter: grayscale(100%); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid var(--border); background-image: url('<?= asset('assets/images/covers/naruto-vol-1.jpg') ?>'); background-size: cover; background-position: center; animation: floatManga3 12s ease-in-out infinite alternate;"></div>
         </div>
 
@@ -452,7 +452,7 @@
         </div>
     </section>
 
-    <!-- CARACTERISTIQUES -->
+    
     <section class="section-container" style="padding: 80px 20px;">
         <div style="text-align: center; margin-bottom: 48px;">
             <span class="section-label">Pourquoi nous ?</span>
@@ -486,7 +486,7 @@
         </div>
     </section>
 
-    <!-- FORMULAIRE -->
+    
     <section id="configurer" class="section-container" style="padding: 40px 20px;">
         <div style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column;">
             
@@ -512,10 +512,10 @@
                             Visualisez votre ouvrage sous tous les angles avec notre simulateur d'impression haute définition.
                         </p>
                         
-                        <!-- 3D Scene Viewport -->
+                        
                         <div class="scene-container-3d">
                             <div id="liveBook" class="book-mockup finish-soft">
-                                <!-- Front Cover -->
+                                
                                 <div class="book-cover front">
                                     <div class="shine-overlay"></div>
                                     <div class="cover-design">
@@ -525,23 +525,23 @@
                                         <div class="cover-subtitle" id="bookFormatLabel">A5 EDITION</div>
                                     </div>
                                 </div>
-                                <!-- Spine -->
+                                
                                 <div class="book-spine" style="display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 20px 0; box-sizing: border-box;">
                                     <div id="bookSpineTitle" style="font-family: 'Playfair Display', serif; font-size: 8px; color: rgba(255,255,255,0.75); text-transform: uppercase; font-weight: 800; transform: rotate(90deg); white-space: nowrap; letter-spacing: 1.5px; pointer-events: none;">MANGA</div>
                                 </div>
-                                <!-- Pages Stack -->
+                                
                                 <div class="pages-stack">
                                     <div class="edge-right"></div>
                                     <div class="edge-top"></div>
                                     <div class="edge-bottom"></div>
                                 </div>
-                                <!-- Back Cover -->
+                                
                                 <div class="book-cover back"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Glassmorphism Billing Panel -->
+                    
                     <div class="glass-billing-panel">
                         <div class="billing-title">
                             <span>Estimation instantanée</span>
@@ -581,7 +581,7 @@
                         </div>
                     </div>
 
-                    <!-- Paper texture preview card -->
+                    
                     <div class="paper-preview-card">
                         <div class="paper-texture-box" id="paperTextureBox" style="background:#faf5eb;"></div>
                         <div>
@@ -692,7 +692,7 @@
         </div>
     </section>
 
-    <!-- LOGIQUE INTERACTIVE DU SIMULATEUR 3D, DRAG & DROP & COMPTEUR DE PRIX -->
+    
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const formatTypeInput = document.getElementById('formatType');

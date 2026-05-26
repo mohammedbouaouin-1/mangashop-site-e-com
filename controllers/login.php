@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $redirect = $_GET['redirect'] ?? $_POST['redirect'] ?? '';
-            // Sécurité : n'accepter que les redirections internes simples
+            
             $allowed = ['checkout.php', 'cart.php', 'account.php'];
             if ($redirect && in_array($redirect, $allowed)) {
                 header('Location: ' . $redirect);
