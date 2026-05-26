@@ -2,11 +2,11 @@
 
 
 
-<section style="position:relative; width:100%; height:85vh; min-height:600px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--bg);">
+<section class="hero-premium-section">
     
     <div style="position:absolute; inset:0; z-index:0; background:radial-gradient(circle at 80% 20%, rgba(162,79,43,0.08) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(198,156,109,0.05) 0%, transparent 50%); filter:blur(40px);"></div>
 
-    <div id="premiumSlider" style="position:relative; width:100%; max-width:1300px; height:100%; z-index:1; display:flex; align-items:center; opacity:0; transition:opacity 0.6s ease;">
+    <div id="premiumSlider" class="premium-slider-container">
         <?php foreach(array_slice($heroProducts, 0, 4) as $idx => $p): ?>
         <div class="premium-slide <?= $idx === 0 ? 'active' : '' ?>" style="position:absolute; inset:0; display:flex; align-items:center; padding:0 5%; opacity:0; visibility:hidden; transition:all 0.8s cubic-bezier(0.25, 1, 0.5, 1);">
             
@@ -42,7 +42,7 @@
     </div>
 
     
-    <div style="position:absolute; bottom:40px; left:5%; z-index:10; display:flex; align-items:center; gap:16px;">
+    <div class="slider-dots-container">
         <div style="display:flex; gap:12px;" id="sliderDots">
             <?php foreach(array_slice($heroProducts, 0, 4) as $idx => $p): ?>
                 <button onclick="goToPremiumSlide(<?= $idx ?>)" class="premium-dot <?= $idx === 0 ? 'active' : '' ?>" aria-label="Slide <?= $idx + 1 ?>"></button>

@@ -3,12 +3,12 @@
 ?>
 </main>
 
-<footer style="background-color: var(--ink); color: #fff; padding: 100px 40px 60px; border-top: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;">
+<footer class="site-footer">
   
   <div style="position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(162,79,43,0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
   <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(198,156,109,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
 
-  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px; position: relative; z-index: 1;">
+  <div class="footer-grid">
     
     
     <div>
@@ -78,14 +78,14 @@
     <h3 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 16px;">Rejoignez le cercle MangaShop</h3>
     <p style="color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">Soyez les premiers informés de nos collections limitées et profitez d'offres réservées à nos membres.</p>
     
-    <form onsubmit="subscribeNewsletter(event)" style="display: flex; gap: 12px; max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
+    <form onsubmit="subscribeNewsletter(event)" class="footer-newsletter-form">
       <input type="email" id="newsletterEmail" placeholder="Votre adresse email..." required style="flex: 1; background: transparent; border: none; padding: 12px 20px; color: #fff; font-size: 16px; outline: none;">
       <button type="submit" style="background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 0 32px; font-weight: 800; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(162,79,43,0.3);" onmouseover="this.style.background='#c05b33'; this.style.transform='scale(1.02)';" onmouseout="this.style.background='var(--primary)'; this.style.transform='scale(1)';">S'ABONNER</button>
     </form>
   </div>
 
   
-  <div style="max-width: 1200px; margin: 80px auto 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+  <div class="footer-bottom-row">
     <p style="color: rgba(255,255,255,0.3); font-size: 14px; font-weight: 500;">
       &copy; <?= date('Y') ?> MangaShop. Tous droits réservés.
     </p>

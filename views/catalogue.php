@@ -83,59 +83,67 @@ input[type="range"]::-webkit-slider-thumb:hover {
         
         <aside class="filters-sidebar" style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; box-shadow:var(--shadow-sm); position:sticky; top:100px;">
             
-            <div class="filter-group" style="margin-bottom:24px;">
-                <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Recherche rapide</h4>
-                <input type="text" placeholder="Titre, auteur, mot-clé..." value="<?= e($filters['q']) ?>" oninput="filterSearch(this.value)" style="width:100%; border:1.5px solid var(--border); background:var(--bg); padding:10px 12px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; color:var(--ink); outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'">
-            </div>
+            <button id="mobileFilterToggle" onclick="toggleMobileFilters()" style="align-items:center; justify-content:space-between; width:100%; padding:12px 16px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-md); font-weight:700; color:var(--ink); font-size:14px;">
+                <span>Filtrer les produits</span>
+                <svg id="filterChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform 0.3s;"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
 
-            
-            <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
-                <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Genres</h4>
-                <div style="display:flex; flex-direction:column; gap:12px;">
-                    <?php foreach ($cats as $c): ?>
-                    <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
-                        <input type="checkbox" class="custom-checkbox cat-checkbox" data-slug="<?= e($c['slug']) ?>" onchange="filterCat('<?= e($c['slug']) ?>', this.checked)" <?= ($filters['cat'] === $c['slug']) ? 'checked' : '' ?> style="margin-right:12px;">
-                        <?= e($c['name']) ?>
-                        <span style="margin-left:auto; font-size:11px; background:var(--bg); padding:2px 6px; border:1px solid var(--border); border-radius:var(--radius-full); color:var(--muted); font-weight:600;"><?= $catCounts[$c['id']] ?? 0 ?></span>
-                    </label>
-                    <?php endforeach; ?>
+            <div class="filters-collapsible-content" id="filtersContent">
+                
+                <div class="filter-group" style="margin-bottom:24px; margin-top: 16px;">
+                    <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Recherche rapide</h4>
+                    <input type="text" placeholder="Titre, auteur, mot-clé..." value="<?= e($filters['q']) ?>" oninput="filterSearch(this.value)" style="width:100%; border:1.5px solid var(--border); background:var(--bg); padding:10px 12px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; color:var(--ink); outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'">
                 </div>
-            </div>
 
-            
-            <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
-                <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Budget Max</h4>
-                <div style="display:flex; flex-direction:column; gap:12px;">
-                    <input type="range" min="0" max="250" step="10" value="<?= $filters['max_price'] ?: 250 ?>" 
-                           oninput="filterPrice(this.value)"
-                           style="width:100%; accent-color:var(--ink); cursor:pointer;">
-                    <span id="priceVal" style="font-size:14px; font-weight:700; color:var(--ink);"><?= ($filters['max_price'] ?: 250) ?> MAD</span>
+                
+                <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
+                    <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Genres</h4>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <?php foreach ($cats as $c): ?>
+                        <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
+                            <input type="checkbox" class="custom-checkbox cat-checkbox" data-slug="<?= e($c['slug']) ?>" onchange="filterCat('<?= e($c['slug']) ?>', this.checked)" <?= ($filters['cat'] === $c['slug']) ? 'checked' : '' ?> style="margin-right:12px;">
+                            <?= e($c['name']) ?>
+                            <span style="margin-left:auto; font-size:11px; background:var(--bg); padding:2px 6px; border:1px solid var(--border); border-radius:var(--radius-full); color:var(--muted); font-weight:600;"><?= $catCounts[$c['id']] ?? 0 ?></span>
+                        </label>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
 
-            
-            <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
-                <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Vues rapides</h4>
-                <div style="display:flex; flex-direction:column; gap:12px;">
-                    <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
-                        <input type="checkbox" class="custom-checkbox sort-checkbox" data-sort="best" onchange="filterSort(this.checked, 'best')" <?= $sort === 'best' ? 'checked' : '' ?> style="margin-right:12px;">
-                        Best-Sellers
-                    </label>
-                    <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
-                        <input type="checkbox" class="custom-checkbox sort-checkbox" data-sort="new" onchange="filterSort(this.checked, 'new')" <?= $sort === 'new' ? 'checked' : '' ?> style="margin-right:12px;">
-                        Nouveautés
-                    </label>
-                    <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
-                        <input type="checkbox" class="custom-checkbox promo-checkbox" onchange="filterPromo(this.checked)" <?= $filters['promo'] ? 'checked' : '' ?> style="margin-right:12px;">
-                        En promotion
-                    </label>
+                
+                <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
+                    <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Budget Max</h4>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <input type="range" min="0" max="250" step="10" value="<?= $filters['max_price'] ?: 250 ?>" 
+                               oninput="filterPrice(this.value)"
+                               style="width:100%; accent-color:var(--ink); cursor:pointer;">
+                        <span id="priceVal" style="font-size:14px; font-weight:700; color:var(--ink);"><?= ($filters['max_price'] ?: 250) ?> MAD</span>
+                    </div>
                 </div>
-            </div>
 
-            <a href="catalogue.php" style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); padding:10px; border-radius:var(--radius-full); transition:all 0.2s; text-decoration:none;" onmouseover="this.style.background='var(--white)'; this.style.borderColor='var(--ink)';">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                Réinitialiser
-            </a>
+                
+                <div class="filter-group" style="margin-bottom:24px; padding-top:24px; border-top:1px solid var(--border);">
+                    <h4 style="font-size:12px; font-weight:700; margin-bottom:16px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Vues rapides</h4>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
+                            <input type="checkbox" class="custom-checkbox sort-checkbox" data-sort="best" onchange="filterSort(this.checked, 'best')" <?= $sort === 'best' ? 'checked' : '' ?> style="margin-right:12px;">
+                            Best-Sellers
+                        </label>
+                        <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
+                            <input type="checkbox" class="custom-checkbox sort-checkbox" data-sort="new" onchange="filterSort(this.checked, 'new')" <?= $sort === 'new' ? 'checked' : '' ?> style="margin-right:12px;">
+                            Nouveautés
+                        </label>
+                        <label style="display:flex; align-items:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--ink-soft); transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
+                            <input type="checkbox" class="custom-checkbox promo-checkbox" onchange="filterPromo(this.checked)" <?= $filters['promo'] ? 'checked' : '' ?> style="margin-right:12px;">
+                            En promotion
+                        </label>
+                    </div>
+                </div>
+
+                <a href="catalogue.php" style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:600; color:var(--ink); background:var(--bg); border:1px solid var(--border); padding:10px; border-radius:var(--radius-full); transition:all 0.2s; text-decoration:none;" onmouseover="this.style.background='var(--white)'; this.style.borderColor='var(--ink)';" onmouseout="this.style.background='var(--bg)'; this.style.borderColor='var(--border)';">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    Réinitialiser
+                </a>
+            </div>
         </aside>
 
         
@@ -163,7 +171,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
             <div id="productsGridContainer" style="transition: opacity 0.2s ease;">
                 <?php if ($products): ?>
-                <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:24px;">
+                <div class="catalogue-grid">
                     <?php foreach ($products as $p): include 'includes/product_card.php'; endforeach; ?>
                 </div>
 
@@ -204,6 +212,18 @@ input[type="range"]::-webkit-slider-thumb:hover {
 </div>
 
 <script>
+function toggleMobileFilters() {
+    const content = document.getElementById('filtersContent');
+    const chevron = document.getElementById('filterChevron');
+    if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        chevron.style.transform = 'rotate(180deg)';
+    } else {
+        content.style.display = 'none';
+        chevron.style.transform = 'rotate(0deg)';
+    }
+}
+
 let currentFilters = {
     cat: '<?= e($filters['cat']) ?>',
     q: '<?= e($filters['q']) ?>',
@@ -326,8 +346,7 @@ function updateActiveFiltersBadges() {
 function applyFilters() {
     const grid = document.getElementById('productsGridContainer');
     if (grid) {
-        // Rendre de magnifiques squelettes scintillants en CSS pendant le chargement
-        let skeletonHtml = '<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:24px;">';
+        let skeletonHtml = '<div class="catalogue-grid">';
         for (let i = 0; i < 8; i++) {
             skeletonHtml += `
             <div class="skeleton-card">

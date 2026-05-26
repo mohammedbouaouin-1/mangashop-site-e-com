@@ -149,7 +149,7 @@
 </style>
 
 <div class="product-page" style="padding-bottom:100px;">
-    <nav class="breadcrumb" style="padding: 24px 0; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:flex; gap:12px; max-width:1200px; margin:0 auto;">
+    <nav class="breadcrumb" style="padding: 24px 0; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:flex; flex-wrap:wrap; gap:12px; max-width:1200px; margin:0 auto;">
         <a href="index.php" style="transition:color 0.2s; color:var(--ink-soft);" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">Accueil</a><span>/</span>
         <a href="catalogue.php" style="transition:color 0.2s; color:var(--ink-soft);" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">Catalogue</a><span>/</span>
         <a href="catalogue.php?cat=<?= e($p['cat_slug']) ?>" style="transition:color 0.2s; color:var(--ink-soft);" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'"><?= e($p['cat_name']) ?></a><span>/</span>
@@ -213,7 +213,7 @@
             </div>
 
             
-            <div style="display:flex; gap:16px; margin-bottom:20px;">
+            <div class="prod-action-row">
                 <div style="border:1px solid var(--border); border-radius:var(--radius-full); display:flex; align-items:center; padding:4px; max-width:140px; background:var(--white); box-shadow:var(--shadow-sm);">
                     <button onclick="changeProductQty(-1)" style="width:40px; height:40px; font-size:20px; color:var(--ink); font-weight:500; transition:background 0.2s; border-radius:50%;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='transparent'">−</button>
                     <input type="number" id="prodQtyDisplay" value="1" min="1" readonly style="flex:1; width:100%; text-align:center; border:none; background:transparent; font-size:15px; font-weight:700; color:var(--ink); outline:none;">
@@ -277,7 +277,7 @@
     </div>
 
     
-    <div style="margin-top:80px; max-width:1200px; margin-left:auto; margin-right:auto; background:var(--bg); border:1px solid var(--border); padding:64px 48px; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); text-align:center; position:relative; overflow:hidden;">
+    <div class="collection-benefit-section">
         <h2 style="font-size:32px; font-weight:800; margin-bottom:16px; position:relative; z-index:1; color:var(--ink);">Avantage <span style="color:var(--primary);">Collectionneur</span></h2>
         <p style="font-size:16px; color:var(--ink-soft); max-width:600px; margin:0 auto 48px; position:relative; z-index:1; font-weight:500;">Étendez votre bibliothèque astucieusement. Nos algorithmes déduisent automatiquement les mangas offerts dans votre panier.</p>
         
@@ -317,7 +317,7 @@
             <div style="background:rgba(184, 59, 59, 0.15);color:var(--red);padding:14px 18px;border-radius:10px;font-size:13px;margin-bottom:24px;border:1px solid rgba(184, 59, 59, 0.2);font-weight:600;"><?= e(urldecode($reviewError)) ?></div>
         <?php endif; ?>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+        <div class="reviews-layout">
             
             <div style="display:flex; flex-direction:column; gap:16px;">
                 <?php if (empty($reviews)): ?>
@@ -395,7 +395,7 @@
             <a href="catalogue.php?cat=<?= e($p['cat_slug']) ?>" style="font-size:13px; font-weight:600; color:var(--primary); transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Voir plus de résultats →</a>
         </div>
         
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:32px;">
+        <div class="related-grid">
             <?php 
             $mainProduct = $p;
             foreach (array_slice($related, 0, 4) as $p): 
