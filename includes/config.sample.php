@@ -20,6 +20,12 @@ define('SITE_EMAIL', 'contact@mangashop.ma');
 define('CURRENCY',   'MAD');
 define('WHATSAPP_NUMBER', '212600000000'); 
 
+define('SMTP_HOST', 'VOTRE_SMTP_HOST');
+define('SMTP_USER', 'VOTRE_SMTP_USERNAME');
+define('SMTP_PASS', 'VOTRE_SMTP_PASSWORD');
+define('SMTP_PORT', 587);
+define('SMTP_SECURE', 'tls'); 
+
 
 define('STRIPE_PUBLISHABLE_KEY', getenv('STRIPE_PUBLISHABLE_KEY') ?: 'pk_test_placeholder');
 define('STRIPE_SECRET_KEY',      getenv('STRIPE_SECRET_KEY')      ?: 'sk_test_placeholder');
