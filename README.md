@@ -2,6 +2,11 @@
 
 A modern and feature-rich Manga e-commerce and custom printing web application built with PHP and MySQL, designed to provide a premium shopping experience across all modern browsers.
 
+* 🌐 **Live Website**: [http://mangashop.infinityfree.me](http://mangashop.infinityfree.me)
+* 🔑 **Admin Panel**: [http://mangashop.infinityfree.me/admin/](http://mangashop.infinityfree.me/admin/)
+  * **Email**: `admin@mangashop.ma`
+  * **Password**: `admin123`
+
 ## Features
 
 ### Authentication
